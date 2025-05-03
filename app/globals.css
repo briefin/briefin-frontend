@@ -1,6 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body{
     margin: 0;
-    background-color: blanchedalmond;
+    background-color: black;
+    color: white;
+    padding-left: 0%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    padding-right: 0%;
 }
 
 .list-bg{
@@ -64,4 +73,27 @@ font-weight: bold;
 }
 .list-btn{
     background-color: cornsilk;
+}
+
+.center-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.grid-2-col {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1rem; /* 필요시 간격 조절 */
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 8px;
+    color: white;
 }
