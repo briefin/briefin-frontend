@@ -1,11 +1,25 @@
-// app/page.tsx
+'use client';
 
-import styles from './styles/Home.module.css';
+import Image from 'next/image';
+import * as Common from '@/styles/Common';
 
 export default function Home() {
   return (
-    <main className={styles.container}>
-      <h1 className={styles.title}>BRIEFIN</h1>
-    </main>
+    <>
+      <Common.FullCentered>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Common.BriefinLogo>
+            <Image
+              src="/briefin_logo.png"
+              alt="logo"
+              width={80}
+              height={80}
+              priority
+            />
+          </Common.BriefinLogo>
+          <Common.BriefinTitle>BRIEFIN</Common.BriefinTitle>
+        </div>
+      </Common.FullCentered>
+    </>
   );
 }
