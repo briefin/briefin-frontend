@@ -67,6 +67,13 @@ export default function SearchPage() {
 
   return (
     <>
+
+      <Common.Centered>
+        <Common.Header>
+          <Common.IconButton><FiChevronLeft /></Common.IconButton>  
+        </Common.Header>      
+      </Common.Centered>
+
       <SearchBar />
 
       <Common.Centered>

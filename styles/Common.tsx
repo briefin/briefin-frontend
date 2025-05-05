@@ -267,3 +267,32 @@ export const SuggestedSearchFollowButton = styled.button`
   border: none;
   cursor: pointer;
 `;
+
+export const SbCard = styled.div`
+  width: 160px;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+`;
+
+export const SbImage = styled.img`
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+`;
+
+export const SbTextWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 4px;
+`;
+
+export const SbTitle = styled.div`
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;

@@ -7,9 +7,6 @@ import { FiChevronLeft, FiSearch } from 'react-icons/fi';
 export default function SearchBar() {
   return (
     <Common.SearchBarWrapper>
-      <Common.BackButton>
-        <FiChevronLeft size={20} />
-      </Common.BackButton>
       <Common.SearchInputContainer>
         <FiSearch size={16} />
         <Common.Input type="text" placeholder="Search contents" />
