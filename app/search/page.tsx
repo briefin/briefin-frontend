@@ -1,8 +1,9 @@
 'use client';
 
-import * as Common from '@/styles/Common';
+import SearchBar from '@/src/components/SearchBar';
 import { useRouter } from 'next/navigation';
 import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft  } from 'react-icons/fi';
+import * as Common from '@/styles/Common';
 
 const mockData = [
   {
@@ -15,6 +16,29 @@ const mockData = [
     title: '진주 목걸이는 진짜 유명한 꿀템임',
     author: '@mag.daily',
   },
+];
+
+// ✅ Suggested for you 데이터 (가로 슬라이드용)
+const suggestedData = [
+  {
+    img: '/image_9.png',
+    title: '지리는 여가생활',
+    author: '@yeoga',
+  },
+  {
+    img: '/image_9.png',
+    title: '지리는 여가생활활',
+    author: '@yeoga',
+  },
+  {
+    img: '/image_9.png',
+    title: '지리는 여가생활',
+    author: '@yeoga',
+  },
+  // 필요 시 더 추가 가능
+];
+
+const mockData_2 = [
   {
     img: '/image_3.png',
     title: '중저가 주얼리 이거 사세요',
@@ -37,57 +61,16 @@ const mockData = [
   },
 ];
 
-// ✅ Suggested for you 데이터 (가로 슬라이드용)
-const suggestedData = [
-  {
-    img: '/image_7.png',
-    title: '느충 중년 언니',
-    author: '@mag.daily',
-  },
-  {
-    img: '/image_8.png',
-    title: '빨간맛',
-    author: '@mag.daily',
-  },
-  {
-    img: '/image_7.png',
-    title: '느충 중년 언니',
-    author: '@mag.daily',
-  },
-  {
-    img: '/image_8.png',
-    title: '빨간맛',
-    author: '@mag.daily',
-  },
-  {
-    img: '/image_7.png',
-    title: '느충 중년 언니',
-    author: '@mag.daily',
-  },
-  {
-    img: '/image_8.png',
-    title: '빨간맛',
-    author: '@mag.daily',
-  },
-  // 필요 시 더 추가 가능
-];
-
-export default function Page() {
+export default function SearchPage() {
 
   const router = useRouter(); // ✅ 라우터 훅 사용
 
   return (
     <>
-      <Common.Centered>
-        <Common.Header>
-          <Common.IconButton><FiChevronLeft /></Common.IconButton>  
-          <Common.IconButton><FiMenu /></Common.IconButton>
-        </Common.Header>      
-      </Common.Centered>
+      <SearchBar />
 
       <Common.Centered>
         <Common.ButtonRow>
-          <Common.CategoryButton><Common.IconButton><FiSliders /></Common.IconButton></Common.CategoryButton>
           <Common.CategoryButton active>패션</Common.CategoryButton>
           <Common.CategoryButton>인터뷰</Common.CategoryButton>
           <Common.CategoryButton>맛집</Common.CategoryButton>
@@ -113,18 +96,33 @@ export default function Page() {
             <Common.SectionTitle>Suggested for you</Common.SectionTitle>
             <Common.HorizontalScroll>
               {suggestedData.map((item, idx) => (
-                <Common.SuggestedCard key={idx}>
-                  <Common.SuggestedImage src={item.img} />
-                  <Common.SuggestedInfo>
-                    <Common.Title>{item.title}</Common.Title>
-                    <Common.Author>{item.author}</Common.Author>
-                  </Common.SuggestedInfo>
-                </Common.SuggestedCard>
+                <Common.SuggestedSearchCard key={idx}>
+                  <Common.SuggestedSearchImage src={item.img} />
+                  <Common.SuggestedSearchInfo>
+                    <Common.SuggestedSearchTitle>{item.title}</Common.SuggestedSearchTitle>
+                    <Common.SuggestedSearchHandle>{item.author}</Common.SuggestedSearchHandle>
+                  </Common.SuggestedSearchInfo>
+                  <Common.SuggestedSearchFollowButton>Follow</Common.SuggestedSearchFollowButton>
+                </Common.SuggestedSearchCard>
               ))}
             </Common.HorizontalScroll>
           </Common.SuggestedWrapper>
         </Common.Centered>
+
+        <Common.Grid>
+          {mockData_2.map((item, idx) => (
+            <Common.Card key={idx}>
+              <Common.Image src={item.img} alt={item.title} />
+              <Common.Overlay>
+                <Common.Title>{item.title}</Common.Title>
+                <Common.Author>{item.author}</Common.Author>
+              </Common.Overlay>
+            </Common.Card>
+          ))}
+        </Common.Grid>
+
       </Common.Wrapper>
+
 
       <Common.Centered>
         <Common.BottomNav>
@@ -142,6 +140,7 @@ export default function Page() {
           </Common.NavIcon>
         </Common.BottomNav>
       </Common.Centered>
+
     </>
   );
 }

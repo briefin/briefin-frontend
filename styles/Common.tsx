@@ -184,3 +184,86 @@ export const FullCentered = styled.div`
   flex-direction: column;  /* 아래로 정렬되게 */
   background-color: black; /* 배경색 필요 시 */
 `;
+
+export const SearchBarWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  width: 33.3333%;
+  margin: 0 auto;
+`;
+
+export const BackButton = styled.button`
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  margin-right: 12px;
+  cursor: pointer;
+`;
+
+export const SearchInputContainer = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: #1a1a1a;
+  border-radius: 0; /* ✅ 직각 테두리 */
+  padding: 8px 10px;
+  color: white;
+`;
+
+export const Input = styled.input`
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  margin-left: 8px;
+  flex: 1;
+
+  &::placeholder {
+    color: #888;
+  }
+`;
+export const SuggestedSearchCard = styled.div`
+  width: 120px;
+  background-color: #000;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+`;
+
+export const SuggestedSearchImage = styled.img`
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+`;
+
+export const SuggestedSearchInfo = styled.div`
+  text-align: center;
+  margin-top: 8px;
+`;
+
+export const SuggestedSearchTitle = styled.div`
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 2px;
+`;
+
+export const SuggestedSearchHandle = styled.div`
+  font-size: 12px;
+  color: #ccc;
+`;
+
+export const SuggestedSearchFollowButton = styled.button`
+  margin-top: 8px;
+  width: 100%;
+  padding: 6px 0;
+  font-size: 13px;
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+  cursor: pointer;
+`;
