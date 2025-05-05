@@ -147,6 +147,7 @@ export const SuggestedCard = styled.div`
   overflow: hidden;
   background: #1a1a1a;
   color: white;
+  position: relative;
 `;
 
 export const SuggestedImage = styled.img`
@@ -295,4 +296,134 @@ export const SbTitle = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+export const ProfileHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: black;
+  color: white;
+  width: 100%;
+  max-width: 33.3333vw;
+  margin: 0 auto;
+`;
+
+export const TabWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`;
+
+export const Tab = styled.div<{ active?: boolean }>`
+  font-size: 14px;
+  font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
+  color: ${({ active }) => (active ? 'white' : '#888')};
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+`;
+
+export const ProfileInfoRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  width: 100%;
+  max-width: 33.3333vw;
+  margin: 0 auto;
+`;
+
+export const UserId = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+`;
+
+export const FollowerStats = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`;
+
+export const StatLabel = styled.div`
+  font-size: 13px;
+  color: #888;
+`;
+
+export const StatNumber = styled.div`
+  font-size: 14px;
+  color: white;
+  font-weight: normal;
+`;
+
+export const CardsWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 24px;
+  max-width: 33.333vw;
+  margin: 0 auto;
+`;
+
+export const AnimalCard = styled.div`
+  background-color: black;
+  padding: 16px;
+  text-align: center;
+  border-radius: 8px;
+`;
+
+export const TopLabel = styled.div`
+  font-size: 13px;
+  color: white;
+  margin-bottom: 8px;
+`;
+
+export const AnimalImage = styled.img`
+  width: 60px;
+  height: 60px;
+  margin: 12px auto;
+`;
+
+export const CardTitle = styled.div`
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 8px;
+`;
+
+export const CardSubtitle = styled.div`
+  color: #bbb;
+  font-size: 13px;
+  margin-top: 4px;
+`;
+
+export const BookmarkButton = styled.button`
+  position: static;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 10;
+  `;
+
+  export const BookmarkWrapper = styled.div`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  flex-direction: row;        /* ✅ 가로 배치로 변경 */
+  align-items: center;        /* ✅ 세로 정렬 중앙 */
+  gap: 4px;
+  z-index: 10;
+`;
+
+export const BookmarkLabel = styled.div`
+  font-size: 12px;
+  color: white; /* ✅ 글씨색을 흰색으로 변경 */
+  font-weight: bold;
 `;

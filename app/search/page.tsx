@@ -2,6 +2,7 @@
 
 import SearchBar from '@/src/components/SearchBar';
 import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
 import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft  } from 'react-icons/fi';
 import * as Common from '@/styles/Common';
 
@@ -65,6 +66,22 @@ export default function SearchPage() {
 
   const router = useRouter(); // ✅ 라우터 훅 사용
 
+  const [mockBookmarks, setMockBookmarks] = useState<boolean[]>(new Array(mockData.length).fill(false));
+  const [mockBookmarks_2, setMockBookmarks_2] = useState<boolean[]>(new Array(mockData_2.length).fill(false));
+
+  const toggleMockBookmarks = (index: number) => {
+    setMockBookmarks(prev =>
+      prev.map((b, i) => (i === index ? !b : b))
+    );
+  };
+
+  const toggleMockBookmarks_2 = (index: number) => {
+    setMockBookmarks_2(prev =>
+      prev.map((b, i) => (i === index ? !b : b))
+    );
+  };
+
+
   return (
     <>
 
@@ -89,6 +106,19 @@ export default function SearchPage() {
           {mockData.map((item, idx) => (
             <Common.Card key={idx}>
               <Common.Image src={item.img} alt={item.title} />
+              <Common.BookmarkWrapper>
+                {mockBookmarks[idx] && (
+                  <Common.BookmarkLabel>y2k</Common.BookmarkLabel>
+                )}
+                <Common.BookmarkButton onClick={() => toggleMockBookmarks(idx)}>
+                  <img
+                    src={mockBookmarks[idx] ? '/bookmark_on.png' : '/bookmark_off.png'}
+                    alt="bookmark"
+                    width={20}
+                    height={20}
+                  />
+                </Common.BookmarkButton>
+              </Common.BookmarkWrapper>
               <Common.Overlay>
                 <Common.Title>{item.title}</Common.Title>
                 <Common.Author>{item.author}</Common.Author>
@@ -120,6 +150,19 @@ export default function SearchPage() {
           {mockData_2.map((item, idx) => (
             <Common.Card key={idx}>
               <Common.Image src={item.img} alt={item.title} />
+              <Common.BookmarkWrapper>
+                {mockBookmarks_2[idx] && (
+                  <Common.BookmarkLabel>y2k</Common.BookmarkLabel>
+                )}
+                <Common.BookmarkButton onClick={() => toggleMockBookmarks_2(idx)}>
+                  <img
+                    src={mockBookmarks_2[idx] ? '/bookmark_on.png' : '/bookmark_off.png'}
+                    alt="bookmark"
+                    width={20}
+                    height={20}
+                  />
+                </Common.BookmarkButton>
+              </Common.BookmarkWrapper>
               <Common.Overlay>
                 <Common.Title>{item.title}</Common.Title>
                 <Common.Author>{item.author}</Common.Author>
@@ -129,24 +172,6 @@ export default function SearchPage() {
         </Common.Grid>
 
       </Common.Wrapper>
-
-
-      <Common.Centered>
-        <Common.BottomNav>
-          <Common.NavIcon onClick={() => router.push('/main')}>
-            <FiHome />
-          </Common.NavIcon>
-          <Common.NavIcon onClick={() => router.push('/search')}>
-            <FiSearch />
-          </Common.NavIcon>
-          <Common.NavIcon onClick={() => router.push('/sb')}>
-            <FiBookOpen />
-          </Common.NavIcon>
-          <Common.NavIcon onClick={() => router.push('/profile')}>
-            <FiUser />
-          </Common.NavIcon>
-        </Common.BottomNav>
-      </Common.Centered>
 
     </>
   );

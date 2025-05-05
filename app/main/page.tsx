@@ -1,8 +1,9 @@
 'use client';
 
 import * as Common from '@/styles/Common';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft  } from 'react-icons/fi';
+import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft, FiBookmark   } from 'react-icons/fi';
 
 const mockData = [
   {
@@ -76,6 +77,21 @@ export default function Page() {
 
   const router = useRouter(); // ✅ 라우터 훅 사용
 
+  const [mockBookmarks, setMockBookmarks] = useState<boolean[]>(new Array(mockData.length).fill(false));
+  const [suggestedDataBookmarks, setSuggestedDataBookmarks] = useState<boolean[]>(new Array(suggestedData.length).fill(false));
+
+  const toggleMockBookmarks = (index: number) => {
+    setMockBookmarks(prev =>
+      prev.map((b, i) => (i === index ? !b : b))
+    );
+  };
+
+  const toggleSuggestedDataBookmarks = (index: number) => {
+    setSuggestedDataBookmarks(prev =>
+      prev.map((b, i) => (i === index ? !b : b))
+    );
+  };
+
   return (
     <>
       <Common.Centered>
@@ -99,6 +115,19 @@ export default function Page() {
           {mockData.map((item, idx) => (
             <Common.Card key={idx}>
               <Common.Image src={item.img} alt={item.title} />
+              <Common.BookmarkWrapper>
+                {mockBookmarks[idx] && (
+                  <Common.BookmarkLabel>y2k</Common.BookmarkLabel>
+                )}
+                <Common.BookmarkButton onClick={() => toggleMockBookmarks(idx)}>
+                  <img
+                    src={mockBookmarks[idx] ? '/bookmark_on.png' : '/bookmark_off.png'}
+                    alt="bookmark"
+                    width={20}
+                    height={20}
+                  />
+                </Common.BookmarkButton>
+              </Common.BookmarkWrapper>
               <Common.Overlay>
                 <Common.Title>{item.title}</Common.Title>
                 <Common.Author>{item.author}</Common.Author>
@@ -115,6 +144,19 @@ export default function Page() {
               {suggestedData.map((item, idx) => (
                 <Common.SuggestedCard key={idx}>
                   <Common.SuggestedImage src={item.img} />
+                  <Common.BookmarkWrapper>
+                    {suggestedDataBookmarks[idx] && (
+                      <Common.BookmarkLabel>y2k</Common.BookmarkLabel>
+                    )}
+                    <Common.BookmarkButton onClick={() => toggleSuggestedDataBookmarks(idx)}>
+                      <img
+                        src={suggestedDataBookmarks[idx] ? '/bookmark_on.png' : '/bookmark_off.png'}
+                        alt="bookmark"
+                        width={20}
+                        height={20}
+                      />
+                    </Common.BookmarkButton>
+                  </Common.BookmarkWrapper>
                   <Common.SuggestedInfo>
                     <Common.Title>{item.title}</Common.Title>
                     <Common.Author>{item.author}</Common.Author>
@@ -126,22 +168,6 @@ export default function Page() {
         </Common.Centered>
       </Common.Wrapper>
 
-      <Common.Centered>
-        <Common.BottomNav>
-          <Common.NavIcon onClick={() => router.push('/main')}>
-            <FiHome />
-          </Common.NavIcon>
-          <Common.NavIcon onClick={() => router.push('/search')}>
-            <FiSearch />
-          </Common.NavIcon>
-          <Common.NavIcon onClick={() => router.push('/sb')}>
-            <FiBookOpen />
-          </Common.NavIcon>
-          <Common.NavIcon onClick={() => router.push('/profile')}>
-            <FiUser />
-          </Common.NavIcon>
-        </Common.BottomNav>
-      </Common.Centered>
     </>
   );
 }

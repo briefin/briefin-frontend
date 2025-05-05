@@ -46,23 +46,6 @@ export default function SearchPage() {
         </Common.Grid>
     </Common.Wrapper>
 
-    <Common.Centered>
-        <Common.BottomNav>
-            <Common.NavIcon onClick={() => router.push('/main')}>
-            <FiHome />
-            </Common.NavIcon>
-            <Common.NavIcon onClick={() => router.push('/search')}>
-            <FiSearch />
-            </Common.NavIcon>
-            <Common.NavIcon onClick={() => router.push('/sb')}>
-            <FiBookOpen />
-            </Common.NavIcon>
-            <Common.NavIcon onClick={() => router.push('/profile')}>
-            <FiUser />
-            </Common.NavIcon>
-        </Common.BottomNav>
-    </Common.Centered>
-
     </>
   );
 }
