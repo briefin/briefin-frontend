@@ -4,6 +4,8 @@
 
 import styled from 'styled-components';
 
+export const FOLLOW_WIDTH = '100px';
+
 /* ✅ 재사용 가능한 중앙 컨테이너 */
 const CenteredContainer = `
   width: 100%;
@@ -34,6 +36,7 @@ export const Wrapper = styled.main`
   background-color: black;
   color: white;
   padding: 0;
+  padding-bottom: 50px;
 `;
 
 export const Grid = styled.div`
@@ -89,7 +92,7 @@ export const ButtonRow = styled.div`
   justify-content: flex-start;
   gap: 8px;
   margin-top: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   margin-left: 24px;
   ${CenteredContainer}
 `;
@@ -109,6 +112,7 @@ export const BottomNav = styled.nav`
   position: fixed;
   bottom: 0;
   left: 50%;
+  height : 50px;
   transform: translateX(-50%);
   background: Black;
   display: flex;
@@ -128,25 +132,30 @@ export const NavIcon = styled.button`
   cursor: pointer;
 `;
 
+
+
 export const SuggestedWrapper = styled.div`
   margin-top: 32px;
+  padding: 20px; // 🔥 사방 여백 모두 포함!
+  box-sizing: border-box;
   overflow-x: hidden;
   ${CenteredContainer}
 `;
 
 export const SectionTitle = styled.h2`
-  color: white;
+  color: #E7E7E7;
   font-size: 14px;
-  margin-bottom: 12px;
+  margin-top : 10px;
+  margin-bottom: 7px;
   padding-left: 8px;
   font-weight: 500;
 `;
 
 export const HorizontalScroll = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 20px; // ✅ 카드 간 간격 피그마와 동일하게
   overflow-x: auto;
-  padding-bottom: 8px;
+  overflow-y: hidden;
 
   &::-webkit-scrollbar {
     display: none;
@@ -155,22 +164,51 @@ export const HorizontalScroll = styled.div`
 
 export const SuggestedCard = styled.div`
   flex: 0 0 auto;
-  width: 160px;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #1a1a1a;
+  width: 220px;
   color: white;
+  overflow: hidden;
   position: relative;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 `;
+
 
 export const SuggestedImage = styled.img`
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
+  display: block;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 4px;
 `;
+
+export const SuggestedTextWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent); 
+  color: white;
+`;
+
 
 export const SuggestedInfo = styled.div`
   padding: 8px;
+`;
+//덮어씌우는 layout - home의 suggestion에서 사용
+export const SuggestedOverlay = styled.div` 
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 60%);
+  color: white;
 `;
 
 export const BriefinLogo = styled.div`
@@ -240,14 +278,20 @@ export const Input = styled.input`
 `;
 
 export const SuggestedSearchCard = styled.div`
-  width: 120px;
+  width: 140px;
   background-color: #000;
   border: 1px solid #333;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8px;
+  padding: 20px 20px;
+  margin: 0 1px;
+  box-sizing: border-box; // ✅ 꼭 필요!
+  flex-shrink: 0;
+  margin-top: 10px;
 `;
+
+
 
 export const SuggestedSearchImage = styled.img`
   width: 100%;
@@ -258,13 +302,16 @@ export const SuggestedSearchImage = styled.img`
 
 export const SuggestedSearchInfo = styled.div`
   text-align: center;
-  margin-top: 8px;
+  margin-top: 12px;        // 🔥 이미지와 텍스트 사이
+  margin-bottom: 12px;     // 🔥 텍스트와 버튼 사이
+  cursor: pointer;
 `;
 
 export const SuggestedSearchTitle = styled.div`
   font-size: 16px;
-  font-weight: normal;
+  font-weight: 500;
   margin-bottom: 2px;
+  color: #E7E7E7;
 `;
 
 export const SuggestedSearchHandle = styled.div`
@@ -274,16 +321,16 @@ export const SuggestedSearchHandle = styled.div`
   font-weight: 400;
 `;
 
-export const SuggestedSearchFollowButton = styled.button`
-  margin-top: 8px;
+export const SuggestedSearchFollowButton = styled.img`
   width: 100%;
-  padding: 6px 0;
-  font-size: 13px;
-  background-color: #1a1a1a;
-  color: white;
-  border: none;
+  height: auto;
+  display: block;
   cursor: pointer;
+  margin-top: 12px;
+  cursor: pointer;
+  margin-bottom: 20px;
 `;
+
 
 const SearchFollowBtn = styled.img`
   width: 100%;

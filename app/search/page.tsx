@@ -25,17 +25,17 @@ const mockData = [
 const suggestedData = [
   {
     img: '/image_9.png',
-    title: '지리는 여가생활',
+    title: '지리는여가생활',
     author: '@yeoga',
   },
   {
     img: '/image_9.png',
-    title: '지리는 여가생활활',
+    title: '지리는여가생활',
     author: '@yeoga',
   },
   {
     img: '/image_9.png',
-    title: '지리는 여가생활',
+    title: '지리는여가생활',
     author: '@yeoga',
   },
   // 필요 시 더 추가 가능
@@ -99,7 +99,7 @@ export default function SearchPage() {
 
       <Common.Centered>
         <Common.ButtonRow>
-          <Common.CategoryButton $active>패션</Common.CategoryButton>
+          <Common.CategoryButton active>패션</Common.CategoryButton>
           <Common.CategoryButton>인터뷰</Common.CategoryButton>
           <Common.CategoryButton>맛집</Common.CategoryButton>
         </Common.ButtonRow>

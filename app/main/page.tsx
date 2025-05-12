@@ -106,7 +106,7 @@ export default function Page() {
       <Common.Centered>
         <Common.ButtonRow>
           <Common.IconButton><FilterBtn/></Common.IconButton>
-          <Common.CategoryButton $active>패션</Common.CategoryButton>
+          <Common.CategoryButton active>패션</Common.CategoryButton>
           <Common.CategoryButton>인터뷰</Common.CategoryButton>
           <Common.CategoryButton>맛집</Common.CategoryButton>
         </Common.ButtonRow>
@@ -139,17 +139,25 @@ export default function Page() {
         </Common.Grid>
 
         {/* ✅ Suggested for you 섹션 */}
+{/* ✅ Suggested for you 섹션 */}
         <Common.Centered>
           <Common.SuggestedWrapper>
             <Common.SectionTitle>Suggested for you</Common.SectionTitle>
             <Common.HorizontalScroll>
               {suggestedData.map((item, idx) => (
                 <Common.SuggestedCard key={idx}>
-                  <Common.SuggestedImage src={item.img} />
+                  <Common.SuggestedImage src={item.img} alt={item.title} />
+          {/* 오버레이 텍스트 */}
+                  <Common.SuggestedOverlay>
+                    <Common.Title>{item.title}</Common.Title>
+                    <Common.Author>{item.author}</Common.Author>
+                  </Common.SuggestedOverlay>
+
+          {/* 북마크 */}
                   <Common.BookmarkWrapper>
-                    {suggestedDataBookmarks[idx] && (
-                      <Common.BookmarkLabel>y2k</Common.BookmarkLabel>
-                    )}
+                      {suggestedDataBookmarks[idx] && (
+                       <Common.BookmarkLabel>y2k</Common.BookmarkLabel>
+                  )}
                     <Common.BookmarkButton onClick={() => toggleSuggestedDataBookmarks(idx)}>
                       <img
                         src={suggestedDataBookmarks[idx] ? '/bookmark_on.png' : '/bookmark_off.png'}
@@ -159,10 +167,6 @@ export default function Page() {
                       />
                     </Common.BookmarkButton>
                   </Common.BookmarkWrapper>
-                  <Common.SuggestedInfo>
-                    <Common.Title>{item.title}</Common.Title>
-                    <Common.Author>{item.author}</Common.Author>
-                  </Common.SuggestedInfo>
                 </Common.SuggestedCard>
               ))}
             </Common.HorizontalScroll>
