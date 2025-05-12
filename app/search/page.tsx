@@ -143,7 +143,7 @@ export default function SearchPage() {
                     <Common.SuggestedSearchTitle>{item.title}</Common.SuggestedSearchTitle>
                     <Common.SuggestedSearchHandle>{item.author}</Common.SuggestedSearchHandle>
                   </Common.SuggestedSearchInfo>
-                  <SearchFollowBtn/>
+                  <SearchFollowBtn src={SearchFollowBtn} alt="Follow Button" />
                 </Common.SuggestedSearchCard>
               ))}
             </Common.HorizontalScroll>

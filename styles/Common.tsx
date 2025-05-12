@@ -68,11 +68,14 @@ export const Overlay = styled.div`
 export const Title = styled.div`
   font-size: 18px;
   font-weight: 600;
+  line-height: 130%;
 `;
 
 export const Author = styled.div`
   font-size: 10px;
   color: #FFFFFF;
+  font-weight: 400;
+  line-height: 22px;
 `;
 
 export const Centered = styled.div`
@@ -136,6 +139,7 @@ export const SectionTitle = styled.h2`
   font-size: 14px;
   margin-bottom: 12px;
   padding-left: 8px;
+  font-weight: 500;
 `;
 
 export const HorizontalScroll = styled.div`
@@ -247,6 +251,7 @@ export const SuggestedSearchCard = styled.div`
 
 export const SuggestedSearchImage = styled.img`
   width: 100%;
+  aspect-ratio: 1 / 1;
   height: auto;
   object-fit: cover;
 `;
@@ -266,6 +271,7 @@ export const SuggestedSearchHandle = styled.div`
   font-size: 14px;
   color: #848484;
   margin-bottom: 2px;
+  font-weight: 400;
 `;
 
 export const SuggestedSearchFollowButton = styled.button`
@@ -277,6 +283,13 @@ export const SuggestedSearchFollowButton = styled.button`
   color: white;
   border: none;
   cursor: pointer;
+`;
+
+const SearchFollowBtn = styled.img`
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  margin-top: 8px;
 `;
 
 export const SbCard = styled.div`
@@ -465,3 +478,5 @@ export const TagBadge = styled.div`
   border-radius: 20px;
   white-space: nowrap;
 `;
+
+

@@ -25,6 +25,14 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     font-display: swap;
   }
+  
+  @font-face {
+    font-family: 'Wanted Sans';
+    src: url('/fonts/WantedSans-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
 
   body {
     margin: 0;
