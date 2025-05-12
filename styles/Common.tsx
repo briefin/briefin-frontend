@@ -133,8 +133,9 @@ export const SuggestedWrapper = styled.div`
 
 export const SectionTitle = styled.h2`
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 12px;
+  padding-left: 8px;
 `;
 
 export const HorizontalScroll = styled.div`
@@ -256,14 +257,15 @@ export const SuggestedSearchInfo = styled.div`
 `;
 
 export const SuggestedSearchTitle = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   font-weight: normal;
   margin-bottom: 2px;
 `;
 
 export const SuggestedSearchHandle = styled.div`
-  font-size: 12px;
-  color: #ccc;
+  font-size: 14px;
+  color: #848484;
+  margin-bottom: 2px;
 `;
 
 export const SuggestedSearchFollowButton = styled.button`

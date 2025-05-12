@@ -7,6 +7,7 @@ import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft 
 import * as Common from '@/styles/Common';
 import { BackArrowBtn, SearchFollowBtn} from '@/src/assets/icons';
 
+
 const mockData = [
   {
     img: '/image_1.png',
