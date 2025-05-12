@@ -183,7 +183,6 @@ export const SuggestedImage = styled.img`
   display: block;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 4px;
 `;
 
 export const SuggestedTextWrapper = styled.div`
