@@ -33,7 +33,7 @@ const suggestedData = [
   },
   {
     img: '/image_9.png',
-    title: '지리는 여가생활',
+    title: '지리는 여가생활활활',
     author: '@yeoga',
   },
   // 필요 시 더 추가 가능
