@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft  } from 'react-icons/fi';
 import * as Common from '@/styles/Common';
+import { BackArrowBtn, SearchFollowBtn} from '@/src/assets/icons';
 
 const mockData = [
   {
@@ -33,7 +34,7 @@ const suggestedData = [
   },
   {
     img: '/image_9.png',
-    title: '지리는 여가생활활활',
+    title: '지리는 여가생활',
     author: '@yeoga',
   },
   // 필요 시 더 추가 가능
@@ -87,11 +88,11 @@ export default function SearchPage() {
 
       <Common.Centered>
         <Common.Header>
-          <Common.IconButton><FiChevronLeft /></Common.IconButton>  
+          <Common.IconButton><BackArrowBtn /></Common.IconButton>  
         </Common.Header>      
       </Common.Centered>
 
-      <Common.Centered style={{ margin: '16px 0' }}>
+      <Common.Centered style={{ margin: '15px 0' }}>
         <SearchBar />
       </Common.Centered>
 
@@ -141,7 +142,7 @@ export default function SearchPage() {
                     <Common.SuggestedSearchTitle>{item.title}</Common.SuggestedSearchTitle>
                     <Common.SuggestedSearchHandle>{item.author}</Common.SuggestedSearchHandle>
                   </Common.SuggestedSearchInfo>
-                  <Common.SuggestedSearchFollowButton>Follow</Common.SuggestedSearchFollowButton>
+                  <SearchFollowBtn/>
                 </Common.SuggestedSearchCard>
               ))}
             </Common.HorizontalScroll>

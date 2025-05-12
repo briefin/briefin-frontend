@@ -9,12 +9,11 @@ import  {default as ScrapbookWhiteBtn} from './scrapbook_white_btn.svg';
 import  {default as UserGrayBtn} from './user_gray_btn.svg';
 import  {default as UserWhiteBtn }from './user_white_btn.svg';
 import  {default as BackArrowBtn} from './backarrow_btn.svg';
-import  {default as BookmarkEmptyBtn} from './bookmark_empty_btn.svg';
-import  {default as BookmarkFullBtn} from './bookmark_full_btn.svg';
-import  {default as HomeBottomNav} from './home_bottomNav.svg';
-import  {default as SearchBottomNav }from './search_bottomNav.svg';
-import  { default as ScrapbookBottomNav} from './scrapbook_bottomNav.svg';
-import  { default as UserBottomNav }from './user_bottomNav.svg';
+import  {default as FilterBtn} from './filter_btn.svg';
+import  {default as UploadBtn} from './upload_btn.svg';
+import  {default as SearchFollowBtn} from './search_follow_btn.svg';
+
+
 
 
 export {
@@ -27,10 +26,7 @@ export {
   UserGrayBtn,
   UserWhiteBtn,
   BackArrowBtn,
-  BookmarkEmptyBtn,
-  BookmarkFullBtn,
-  HomeBottomNav,
-  ScrapbookBottomNav,
-  SearchBottomNav,
-  UserBottomNav,
+  FilterBtn,
+  UploadBtn,
+  SearchFollowBtn,
 };

@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import * as Common from '@/styles/Common';
 import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft, FiPlus  } from 'react-icons/fi';
 import { usePathname, useRouter } from 'next/navigation';
+import FilterIcon from 'src/assets/icons/filter.svg'; 
+
 
 export default function ProfileLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() ?? '';
