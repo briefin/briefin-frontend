@@ -12,6 +12,7 @@ import  {default as BackArrowBtn} from './backarrow_btn.svg';
 import  {default as FilterBtn} from './filter_btn.svg';
 import  {default as UploadBtn} from './upload_btn.svg';
 import  {default as SearchFollowBtn} from './search_follow_btn.svg';
+import  {default as LIkeBtn} from './like_btn.svg';
 
 
 
@@ -29,4 +30,5 @@ export {
   FilterBtn,
   UploadBtn,
   SearchFollowBtn,
+  LIkeBtn,
 };

@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import * as Common from '@/styles/common';
+import * as Common from '@/styles/Common';
+import { UploadBtn } from '@/src/assets/icons';
 
 export default function ShortPostPage() {
   const [currentIndex, setCurrentIndex] = useState(0);

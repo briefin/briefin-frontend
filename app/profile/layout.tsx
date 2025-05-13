@@ -20,8 +20,8 @@ export default function ProfileLayout({ children }: { children: React.ReactNode 
         <Common.Header>
             <Common.IconButton><FiChevronLeft /></Common.IconButton>  
                 <Common.TabWrapper>
-                    <Common.Tab $active={isUser} onClick={() => router.push('/profile/user')}>User</Common.Tab>
-                    <Common.Tab $active={isPublisher} onClick={() => router.push('/profile/publisher')}>Publisher</Common.Tab>
+                    <Common.Tab active={isUser} onClick={() => router.push('/profile/user')}>User</Common.Tab>
+                    <Common.Tab active={isPublisher} onClick={() => router.push('/profile/publisher')}>Publisher</Common.Tab>
                 </Common.TabWrapper>
             <Common.IconButton><FiPlus /></Common.IconButton> 
         </Common.Header>      
