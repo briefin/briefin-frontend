@@ -115,7 +115,7 @@ export default function UserProfilePage() {
       </Common.Centered>
 
       {/* ✅ 하트한 게시물 섹션 */}
-      <Common.CategoryTitle>하트한 계시물</Common.CategoryTitle>
+      <Common.CategoryTitle>하트한 게시물</Common.CategoryTitle>
       <Common.Grid3>
         {mockData.map((item, idx) => (
           <Common.Card key={idx}>
