@@ -463,3 +463,381 @@ export const TagBadge = styled.div`
   border-radius: 20px;
   white-space: nowrap;
 `;
+<<<<<<< Updated upstream
+=======
+
+// 공통 Wrapper
+export const BottomBar = styled.div<{ variant?: 'dark' | 'light' }>`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%; /* ✅ vw 사용 시 overflow 생길 수 있음 */
+  z-index: 99;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px 24px 16px; /* ✅ 하단 padding 더 넉넉하게 */
+  box-sizing: border-box;
+
+  background-color: ${({ variant }) =>
+    variant === 'light' ? 'rgba(100, 100, 100, 0.3)' : 'black'};
+  backdrop-filter: ${({ variant }) =>
+    variant === 'light' ? 'blur(6px)' : 'none'};
+`;
+
+// 왼쪽 사용자 영역
+export const ProfileTag = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+// 버튼
+export const HandleBadge = styled.div`
+  background-color: #333;
+  color: #ccc;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 20px;
+`;
+
+// 아이콘 그룹
+export const ActionIcons = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+`;
+
+export const Description = styled.div`
+  padding: 16px;
+  color: white;
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: black;
+`;
+
+export const IndicatorWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  background-color: black;
+`;
+
+export const IndicatorDot = styled.button<{ active?: boolean }>`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: ${({ active }) => (active ? '#888' : 'white')};
+  cursor: pointer;
+`;
+
+export const ImageViewer = styled.div`
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+`;
+
+export const ViewerImage = styled.img`
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+`;
+
+export const PostImageSmall = styled.img`
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 16px 0 8px 16px; /* 상단 여백 + 좌측 정렬 */
+`;
+
+export const HorizontalBlock = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+`;
+
+export const SquareImage = styled.img`
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 4px;
+`;
+
+export const SummaryText = styled.div`
+  color: white;
+  font-size: 14px;
+  line-height: 1.5;
+  flex: 1;
+`;
+
+export const LongText = styled.div`
+  color: white;
+  font-size: 14px;
+  line-height: 1.8;
+  padding: 0 16px 32px 16px;
+`;
+
+export const BackgroundImage = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-image: url('/image_1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.5) blur(2px); /* 어두워지고 약간 흐릿함 */
+  opacity: 0.7; /* 투명도 */
+  transform: scale(1.2); /* 확대 */
+`;
+
+export const BookmarkOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* ✅ 반투명 검정 배경 */
+  z-index: 999; /* ✅ 하단바 위 */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+`;
+
+export const BookmarkSelectBox = styled.div`
+  width: 100%;
+  max-width: 480px;
+  background-color: #333;
+  padding: 16px;
+  border-radius: 12px 12px 0 0;
+  color: white;
+  z-index: 1000;
+
+  /* ✅ 하단바 높이만큼 띄우기 */
+  margin-bottom: 64px;
+`;
+
+export const BookmarkItem = styled.div`
+  padding: 10px 12px;
+  border-radius: 8px;
+  background-color: #444;
+  margin-bottom: 8px;
+  font-size: 14px;
+`;
+
+export const ScrapToast = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  color: white;
+  padding: 24px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const ScrapImage = styled.img`
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+`;
+
+export const ProfilePageWrapper = styled.div`
+  padding: 0 16px;
+  background-color: black;
+  color: white;
+`;
+
+export const ProfileHeaderRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+`;
+
+export const ProfileTab = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+
+  span {
+    color: #888;
+    font-weight: normal;
+    margin-left: 6px;
+  }
+`;
+
+export const ProfileImage = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+`;
+
+export const UserInfoText = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Username = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+`;
+
+export const Stats = styled.div`
+  font-size: 14px;
+  color: #ccc;
+  margin-top: 4px;
+`;
+
+export const ProfileInfoWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;  /* ✅ 아이콘은 우측 정렬 */
+  align-items: center;
+  margin-bottom: 24px;
+`;
+
+export const ProfileDetails = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
+export const CategorySection = styled.div`
+  margin-bottom: 32px;
+`;
+
+export const CategoryTitle = styled.div`
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 12px;
+`;
+
+export const WordCloud = styled.div`
+  position: relative;
+  width: 100%;
+  height: 120px;
+`;
+
+export const WordItem = styled.div<{ size?: number; x: number; y: number; bold?: boolean }>`
+  position: absolute;
+  top: ${({ y }) => y}px;
+  left: ${({ x }) => x}px;
+  font-size: ${({ size }) => size || 14}px;
+  font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
+  color: #ccc;
+`;
+
+export const PublisherScroll = styled.div`
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+export const PublisherCard = styled.div`
+  flex: 0 0 auto;
+  width: 120px;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+`;
+
+export const PublisherImage = styled.img`
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+`;
+
+export const PublisherInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1; /* ✅ 우측 공간 확보 */
+  min-width: 0; /* ✅ 자식이 줄바꿈 안 되도록 */
+`;
+
+export const PublisherTitle = styled.div`
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const PublisherHandle = styled.div`
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 4px;
+`;
+export const Grid3 = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* ✅ 3열 */
+  gap: 12px;
+  padding: 0 16px;
+  margin: 0 auto;
+  max-width: 100%;
+`;
+
+export const PublisherPageWrapper = styled.div`
+  background-color: black;
+  color: white;
+  padding: 24px 16px;
+  min-height: 100vh;
+`;
+
+export const PublisherItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+`;
+
+export const PublisherAvatar = styled.img`
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
+export const PublisherTextGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* ✅ 남은 공간 꽉 채우기 */
+  min-width: 0;
+`;
+
+export const PublisherId = styled.div`
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 4px;
+`;
+
+export const PublisherStats = styled.div`
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: #aaa;
+  white-space: nowrap; /* ✅ 줄바꿈 방지 */
+`;
+>>>>>>> Stashed changes
