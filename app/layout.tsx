@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   ];
 
   // '/' 주소는 '/main'으로 보내거나, 제외하려면 excludedPaths 로 처리
-  const excludedPaths = ['/'];
+  const excludedPaths = ['/post/short', '/post/long'];
   const showBottomNav = !excludedPaths.includes(pathname);
 
   return (

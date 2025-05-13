@@ -525,21 +525,33 @@ export const TagBadge = styled.div`
   white-space: nowrap;
 `;
 
-export const BottomBar = styled.div`
+// 공통 Wrapper
+export const BottomBar = styled.div<{ variant?: 'dark' | 'light' }>`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%; /* ✅ vw 사용 시 overflow 생길 수 있음 */
+  z-index: 99;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
-  background-color: black;
-  color: white;
+  padding: 12px 16px 24px 16px; /* ✅ 하단 padding 더 넉넉하게 */
+  box-sizing: border-box;
+
+  background-color: ${({ variant }) =>
+    variant === 'light' ? 'rgba(100, 100, 100, 0.3)' : 'black'};
+  backdrop-filter: ${({ variant }) =>
+    variant === 'light' ? 'blur(6px)' : 'none'};
 `;
 
+// 왼쪽 사용자 영역
 export const ProfileTag = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
 `;
 
+// 버튼
 export const HandleBadge = styled.div`
   background-color: #333;
   color: #ccc;
@@ -548,6 +560,7 @@ export const HandleBadge = styled.div`
   border-radius: 20px;
 `;
 
+// 아이콘 그룹
 export const ActionIcons = styled.div`
   display: flex;
   align-items: center;
@@ -595,3 +608,57 @@ export const ViewerImage = styled.img`
   object-fit: cover;
   aspect-ratio: 1 / 1;
 `;
+
+export const PostImageSmall = styled.img`
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 16px 0 8px 16px; /* 상단 여백 + 좌측 정렬 */
+`;
+
+export const HorizontalBlock = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+`;
+
+export const SquareImage = styled.img`
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 4px;
+`;
+
+export const SummaryText = styled.div`
+  color: white;
+  font-size: 14px;
+  line-height: 1.5;
+  flex: 1;
+`;
+
+export const LongText = styled.div`
+  color: white;
+  font-size: 14px;
+  line-height: 1.8;
+  padding: 0 16px 32px 16px;
+`;
+
+export const BackgroundImage = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-image: url('/image_1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.5) blur(2px); /* 어두워지고 약간 흐릿함 */
+  opacity: 0.7; /* 투명도 */
+  transform: scale(1.2); /* 확대 */
+`;
+

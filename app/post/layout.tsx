@@ -9,6 +9,7 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
   const pathname = usePathname();
   const isLong = pathname.includes('/post/long');
   const readLabel = isLong ? '긴글읽기' : '짧은글읽기';
+  const barVariant = isLong ? 'light' : 'dark';
 
   return (
     <div>
@@ -26,11 +27,11 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
         <Common.TagBadge>트렌드</Common.TagBadge>
       </Common.TagRow>
 
-      {/* 콘텐츠 */}
+      {/* 본문 */}
       {children}
 
-      {/* 하단 바 */}
-      <Common.BottomBar>
+      {/* 하단 바 (고정, 스타일 분기) */}
+      <Common.BottomBar variant={barVariant}>
         <Common.ProfileTag>
           <Common.HandleBadge>@mag.daily</Common.HandleBadge>
           <Common.HandleBadge>{readLabel}</Common.HandleBadge>
