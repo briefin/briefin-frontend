@@ -1,6 +1,15 @@
 // styles/Common.ts
 
+'use client';
+
 import styled from 'styled-components';
+
+/* ✅ 재사용 가능한 중앙 컨테이너 */
+const CenteredContainer = `
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+`;
 
 export const Header = styled.div`
   display: flex;
@@ -8,7 +17,7 @@ export const Header = styled.div`
   justify-content: space-between;
   padding: 12px 16px;
   background-color: black;
-  width: 33.3333%;
+  ${CenteredContainer}
 `;
 
 export const IconButton = styled.button`
@@ -30,8 +39,7 @@ export const Wrapper = styled.main`
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  width: 33.3333%;
-  margin: 0 auto;
+  ${CenteredContainer}
 `;
 
 export const Card = styled.div`
@@ -77,10 +85,10 @@ export const ButtonRow = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 8px;
-  width: 33.3333%;
   margin-top: 8px;
   margin-bottom: 16px;
   margin-left: 24px;
+  ${CenteredContainer}
 `;
 
 export const CategoryButton = styled.button<{ active?: boolean }>`
@@ -90,7 +98,7 @@ export const CategoryButton = styled.button<{ active?: boolean }>`
   background-color: ${({ active }) => (active ? 'white' : 'transparent')};
   color: ${({ active }) => (active ? 'black' : 'white')};
   font-size: 14px;
-  border-radius: 0px;
+  border-radius: 0;
   cursor: pointer;
 `;
 
@@ -99,13 +107,14 @@ export const BottomNav = styled.nav`
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 33.3333%;
   background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 12px 0;
   z-index: 999;
+  width: 100%;
+  max-width: 480px;
 `;
 
 export const NavIcon = styled.button`
@@ -116,11 +125,10 @@ export const NavIcon = styled.button`
   cursor: pointer;
 `;
 
-/* ✅ 추가: Suggested 섹션 관련 스타일 */
 export const SuggestedWrapper = styled.div`
   margin-top: 32px;
-  width: 33.3333%;   /* ✅ 고정 너비 */
-  overflow-x: hidden; /* ✅ 가로 스크롤러는 자식에게만 적용 */
+  overflow-x: hidden;
+  ${CenteredContainer}
 `;
 
 export const SectionTitle = styled.h2`
@@ -132,7 +140,7 @@ export const SectionTitle = styled.h2`
 export const HorizontalScroll = styled.div`
   display: flex;
   gap: 12px;
-  overflow-x: auto;     /* ✅ 가로 스크롤 */
+  overflow-x: auto;
   padding-bottom: 8px;
 
   &::-webkit-scrollbar {
@@ -142,7 +150,7 @@ export const HorizontalScroll = styled.div`
 
 export const SuggestedCard = styled.div`
   flex: 0 0 auto;
-  width: 160px;        /* ✅ 카드 크기 유지 */
+  width: 160px;
   border-radius: 8px;
   overflow: hidden;
   background: #1a1a1a;
@@ -162,7 +170,7 @@ export const SuggestedInfo = styled.div`
 
 export const BriefinLogo = styled.div`
   height: auto;
-  margin-bottom: 8px; /* ✅ 아래 텍스트와 간격 확보 */
+  margin-bottom: 8px;
 `;
 
 export const BriefinTitle = styled.h1`
@@ -180,18 +188,17 @@ export const FullCentered = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: center; /* 수평 정렬 */
-  align-items: center;     /* 수직 정렬 */
-  flex-direction: column;  /* 아래로 정렬되게 */
-  background-color: black; /* 배경색 필요 시 */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: black;
 `;
 
 export const SearchBarWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 12px 0;
-  width: 33.3333%;
-  margin: 0 auto;
+  ${CenteredContainer}
 `;
 
 export const BackButton = styled.button`
@@ -208,7 +215,7 @@ export const SearchInputContainer = styled.div`
   display: flex;
   align-items: center;
   background-color: #1a1a1a;
-  border-radius: 0; /* ✅ 직각 테두리 */
+  border-radius: 0;
   padding: 8px 10px;
   color: white;
 `;
@@ -226,6 +233,7 @@ export const Input = styled.input`
     color: #888;
   }
 `;
+
 export const SuggestedSearchCard = styled.div`
   width: 120px;
   background-color: #000;
@@ -305,9 +313,7 @@ export const ProfileHeader = styled.div`
   padding: 12px 16px;
   background-color: black;
   color: white;
-  width: 100%;
-  max-width: 33.3333vw;
-  margin: 0 auto;
+  ${CenteredContainer}
 `;
 
 export const TabWrapper = styled.div`
@@ -331,9 +337,7 @@ export const ProfileInfoRow = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  width: 100%;
-  max-width: 33.3333vw;
-  margin: 0 auto;
+  ${CenteredContainer}
 `;
 
 export const UserId = styled.div`
@@ -364,8 +368,7 @@ export const CardsWrapper = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   padding: 24px;
-  max-width: 33.333vw;
-  margin: 0 auto;
+  ${CenteredContainer}
 `;
 
 export const AnimalCard = styled.div`
@@ -409,21 +412,54 @@ export const BookmarkButton = styled.button`
   padding: 0;
   cursor: pointer;
   z-index: 10;
-  `;
+`;
 
-  export const BookmarkWrapper = styled.div`
+export const BookmarkWrapper = styled.div`
   position: absolute;
   top: 8px;
   right: 8px;
   display: flex;
-  flex-direction: row;        /* ✅ 가로 배치로 변경 */
-  align-items: center;        /* ✅ 세로 정렬 중앙 */
+  flex-direction: row;
+  align-items: center;
   gap: 4px;
   z-index: 10;
 `;
 
 export const BookmarkLabel = styled.div`
   font-size: 12px;
-  color: white; /* ✅ 글씨색을 흰색으로 변경 */
+  color: white;
   font-weight: bold;
+`;
+
+export const HeaderContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+`;
+
+export const HeaderTitle = styled.h1`
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  margin: 0;
+`;
+
+export const TagRow = styled.div`
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px;
+`;
+
+export const TagBadge = styled.div`
+  background-color: #1a1a1a;
+  color: white;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
 `;
