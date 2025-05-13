@@ -1,15 +1,42 @@
-import * as Common from '@/styles/Common';
-import { FiChevronLeft } from 'react-icons/fi';
+'use client';
 
-const DetailHeader = () => {
+import React, { useState } from 'react';
+import * as Common from '@/styles/common';
+
+export default function ShortPostPage() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const total = 4;
+
+  const images = [
+    '/image_1.png',
+    '/image_2.png',
+    '/image_3.png',
+    '/image_4.png',
+  ];
+
   return (
-    <Common.HeaderContainer>
-      <Common.BackButton>
-        <FiChevronLeft />
-      </Common.BackButton>
-      <Common.HeaderTitle>빈티지 단추 모음</Common.HeaderTitle>
-    </Common.HeaderContainer>
-  );
-};
+    <div>
+      {/* 👉 이미지 뷰 */}
+      <Common.ImageViewer>
+        <Common.ViewerImage src={images[currentIndex]} alt={`image-${currentIndex}`} />
+      </Common.ImageViewer>
 
-export default DetailHeader;
+      {/* 👉 인디케이터 */}
+      <Common.IndicatorWrapper>
+        {Array.from({ length: total }).map((_, index) => (
+          <Common.IndicatorDot
+            key={index}
+            active={currentIndex === index}
+            onClick={() => setCurrentIndex(index)}
+          />
+        ))}
+      </Common.IndicatorWrapper>
+
+      {/* 👉 설명 텍스트 */}
+      <Common.Description>
+        Lorem ipsum dolor sit amet consectetur. Nulla urna velit consectetur
+        mattis sapien eget sed facilisi. Cursus mauris
+      </Common.Description>
+    </div>
+  );
+}

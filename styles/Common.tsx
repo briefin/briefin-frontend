@@ -525,4 +525,73 @@ export const TagBadge = styled.div`
   white-space: nowrap;
 `;
 
+export const BottomBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: black;
+  color: white;
+`;
 
+export const ProfileTag = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const HandleBadge = styled.div`
+  background-color: #333;
+  color: #ccc;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 20px;
+`;
+
+export const ActionIcons = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+`;
+
+export const Description = styled.div`
+  padding: 16px;
+  color: white;
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: black;
+`;
+
+export const IndicatorWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  background-color: black;
+`;
+
+export const IndicatorDot = styled.button<{ active?: boolean }>`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: ${({ active }) => (active ? '#888' : 'white')};
+  cursor: pointer;
+`;
+
+export const ImageViewer = styled.div`
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+`;
+
+export const ViewerImage = styled.img`
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+`;
