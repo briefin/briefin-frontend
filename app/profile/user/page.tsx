@@ -68,32 +68,79 @@ export default function UserProfilePage() {
   };
 
   return (
-      <>
+    <Common.ProfilePageWrapper>
+      {/* ✅ 프로필 정보 */}
+      <Common.ProfileInfoWrapper>
+        <Common.ProfileDetails>
+          <Common.ProfileImage src='/jordy.png' alt="profile" />
+          <Common.UserInfoText>
+            <Common.Username>@hihihi</Common.Username>
+            <Common.Stats>팔로잉 12  하트수 6</Common.Stats>
+          </Common.UserInfoText>
+        </Common.ProfileDetails>
 
-        <Common.Wrapper>
-          <Common.ProfileInfoRow>
-            <Common.UserId>@hihihi</Common.UserId>
-            <Common.FollowerStats>
-              <Common.StatLabel>팔로우</Common.StatLabel>
-              <Common.StatNumber>100</Common.StatNumber>
-              <Common.StatLabel>팔로잉</Common.StatLabel>
-              <Common.StatNumber>12</Common.StatNumber>
-            </Common.FollowerStats>
-          </Common.ProfileInfoRow>
-        
+        <Common.IconButton>
+          <FiSettings />
+        </Common.IconButton>
+      </Common.ProfileInfoWrapper>
 
-          <Common.CardsWrapper>
-            {consumerTypes.map((type, idx) => (
-              <Common.AnimalCard key={idx}>
-                <Common.TopLabel>내 소비유형</Common.TopLabel>
-                <Common.AnimalImage src={type.img} alt={type.title} />
-                <Common.CardTitle>{type.title}</Common.CardTitle>
-                <Common.CardSubtitle>{type.subtitle}</Common.CardSubtitle>
-              </Common.AnimalCard>
+      {/* ✅ 선호 카테고리리 섹션 */} 
+      <Common.CategorySection>
+        <Common.CategoryTitle>선호 카테고리</Common.CategoryTitle>
+        <Common.WordCloud>
+          <Common.WordItem x={0} y={0}>타이포</Common.WordItem>
+          <Common.WordItem x={80} y={20} size={16}>문학</Common.WordItem>
+          <Common.WordItem x={150} y={0} size={13}>시집</Common.WordItem>
+          <Common.WordItem x={30} y={50} size={12}>사운드 큐레이션</Common.WordItem>
+          <Common.WordItem x={140} y={60} size={16} bold>시네마토크</Common.WordItem>
+        </Common.WordCloud>
+      </Common.CategorySection>
+
+      {/* ✅ 선호 퍼블리셔 섹션 */}
+      <Common.Centered>
+        <Common.SuggestedWrapper>
+          <Common.CategoryTitle>선호 퍼블리셔</Common.CategoryTitle>
+          <Common.HorizontalScroll>
+            {suggestedData.map((item, idx) => (
+              <Common.SuggestedSearchCard key={idx}>
+                <Common.SuggestedSearchImage src={item.img} />
+                <Common.SuggestedSearchInfo>
+                  <Common.SuggestedSearchTitle>{item.title}</Common.SuggestedSearchTitle>
+                  <Common.SuggestedSearchHandle>{item.author}</Common.SuggestedSearchHandle>
+                </Common.SuggestedSearchInfo>
+              </Common.SuggestedSearchCard>
             ))}
-          </Common.CardsWrapper>
-        </Common.Wrapper>
-      </>
+          </Common.HorizontalScroll>
+        </Common.SuggestedWrapper>
+      </Common.Centered>
+
+      {/* ✅ 하트한 게시물 섹션 */}
+      <Common.CategoryTitle>하트한 계시물</Common.CategoryTitle>
+      <Common.Grid3>
+        {mockData.map((item, idx) => (
+          <Common.Card key={idx}>
+            <Common.Image src={item.img} alt={item.title} />
+            <Common.BookmarkWrapper>
+              {mockBookmarks[idx] && (
+                <Common.BookmarkLabel>y2k</Common.BookmarkLabel>
+              )}
+              <Common.BookmarkButton onClick={() => toggleMockBookmarks(idx)}>
+                <img
+                  src={mockBookmarks[idx] ? '/bookmark_on.png' : '/bookmark_off.png'}
+                  alt="bookmark"
+                  width={20}
+                  height={20}
+                />
+              </Common.BookmarkButton>
+            </Common.BookmarkWrapper>
+            <Common.Overlay>
+              <Common.Title>{item.title}</Common.Title>
+              <Common.Author>{item.author}</Common.Author>
+            </Common.Overlay>
+          </Common.Card>
+        ))}
+      </Common.Grid3>
+
+    </Common.ProfilePageWrapper>
   );
 }
-
