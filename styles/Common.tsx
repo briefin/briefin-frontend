@@ -662,3 +662,60 @@ export const BackgroundImage = styled.div`
   transform: scale(1.2); /* 확대 */
 `;
 
+export const BookmarkOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* ✅ 반투명 검정 배경 */
+  z-index: 999; /* ✅ 하단바 위 */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+`;
+
+export const BookmarkSelectBox = styled.div`
+  width: 100%;
+  max-width: 480px;
+  background-color: #333;
+  padding: 16px;
+  border-radius: 12px 12px 0 0;
+  color: white;
+  z-index: 1000;
+
+  /* ✅ 하단바 높이만큼 띄우기 */
+  margin-bottom: 64px;
+`;
+
+export const BookmarkItem = styled.div`
+  padding: 10px 12px;
+  border-radius: 8px;
+  background-color: #444;
+  margin-bottom: 8px;
+  font-size: 14px;
+`;
+
+export const ScrapToast = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  color: white;
+  padding: 24px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const ScrapImage = styled.img`
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+`;
