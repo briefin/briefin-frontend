@@ -94,7 +94,9 @@ export default function JoinPage() {
       </Common.PasswordInputRow>
 
       {/* 제출 버튼 */}
-      <Common.SubmitButton style={{ marginTop: 'auto' }}>회원가입</Common.SubmitButton>
+      <Common.BottomBar>
+        <Common.SubmitButton style={{ marginBottom : '-70px' }}>회원가입</Common.SubmitButton>
+      </Common.BottomBar>
     </Common.FormWrapper>
   );
 }

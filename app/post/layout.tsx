@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { FiBookmark } from 'react-icons/fi';
 import * as Common from '@/styles/Common';
-import { BackArrowBtn, WUploadBtn, LIkeBtn } from '@/src/assets/icons';
+import { BackArrowBtn, WUploadBtn, LikeBtn ,LikedBtn} from '@/src/assets/icons';
 
 export default function PostLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() ?? '';
@@ -12,6 +12,9 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
 
   // 현재 경로에 따라 short/long 판별
   const isLong = pathname.includes('/post/long');
+
+  const [isLiked, setIsLiked] = useState(false);
+  const toggleLike = () => setIsLiked(l => !l);
 
   // 이동할 상대 페이지와 라벨 설정
   const togglePath = isLong ? '/post/short' : '/post/long';
@@ -78,10 +81,13 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
           >
             {toggleLabel}
           </Common.HandleBadge>
-        </Common.ProfileTag>
-
-        <Common.ActionIcons>
-          <LIkeBtn />
+        </Common.ProfileTag>       
+        <Common.ActionIcons onClick={toggleLike}>
+          {isLiked ? (
+            <LikedBtn width={24} height={24} />
+           ) : (
+            <LikeBtn  width={24} height={24} />
+          )}
         </Common.ActionIcons>
         <Common.ActionIcons>
           <FiBookmark onClick={() => setIsBookmarkOpen(true)} />

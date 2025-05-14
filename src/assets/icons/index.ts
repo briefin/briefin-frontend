@@ -11,12 +11,13 @@ import  {default as UserWhiteBtn }from './user_white_btn.svg';
 import  {default as BackArrowBtn} from './backarrow_btn.svg';
 import  {default as UploadBtn} from './upload_btn.svg';
 import  {default as SearchFollowBtn} from './search_follow_btn.svg';
-import  {default as LIkeBtn} from './like_btn.svg';
+import  {default as LikeBtn} from './like_btn.svg';
 import  {default as SettingBtn} from './setting_btn.svg';
 import  {default as KakaoBtn} from './kakao_btn.svg';
 import  {default as AddBtn} from './add_btn.svg';
 import  {default as FollowedIcon} from './followed_icon.svg';
 import  {default as WUploadBtn} from './white_upload_btn.svg';
+import  {default as LikedBtn} from './liked.svg';
 
 
 
@@ -32,10 +33,11 @@ export {
   BackArrowBtn,
   UploadBtn,
   SearchFollowBtn,
-  LIkeBtn,
+  LikeBtn,
   SettingBtn,
   KakaoBtn,
   AddBtn,
   FollowedIcon,
   WUploadBtn,
+  LikedBtn,
 };

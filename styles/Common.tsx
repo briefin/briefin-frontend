@@ -16,7 +16,6 @@ const CenteredContainer = `
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 12px 16px;
   background-color: black;
   ${CenteredContainer}
 `;
@@ -38,8 +37,6 @@ export const AddIconButton = styled.button`
   padding: 4px;
   cursor: pointer;
   margin-right: auto;
-  margin-left: 260px;
-  padding-top: 10px;
 `;
 
 export const Wrapper = styled.main`
@@ -130,10 +127,13 @@ export const CategoryButton = styled.button<{ active?: boolean }>`
   height: 35px;
   background-color: ${({ active }) => (active ? 'white' : '#232323')};
   color: ${({ active }) => (active ? 'black' : 'white')};
-  font-size: 15px;
+  font-size: 16px;
   border-radius: 0;
   cursor: pointer;
   margin-bottom: 20px;
+  flex-wrap: nowrap;
+  padding-top: 10px;
+  row-gap: 2px; 
   
   
 `;
@@ -141,7 +141,7 @@ export const CategoryButton = styled.button<{ active?: boolean }>`
 export const ContentWrapper = styled.div`
   width: 100%;
   margin: 0 auto;         /* 화면 가로 중앙 정렬 */
-  padding: 0 20px;       
+      
   box-sizing: border-box; /* 패딩 포함해서 계산 */
   display: flex;
   flex-direction: column;
@@ -193,8 +193,8 @@ export const SuggestedPublisherWrapper = styled.div`
 
 export const SectionTitle = styled.h2`
   color: #E7E7E7;
-  font-size: 14px;
-  margin-top : 10px;
+  font-size: 18px;
+  margin-top : 15px;
   margin-bottom: 7px;
   padding-left: 8px;
   font-weight: 500;
@@ -582,23 +582,17 @@ export const TagBadge = styled.div`
 `;
 
 // 공통 Wrapper
-export const BottomBar = styled.div<{ variant?: 'dark' | 'light' }>`
+export const BottomBar = styled.div`
+  padding: 16px;
+  background: transparent;
   position: fixed;
-  bottom: 0;
   left: 0;
-  width: 100%; /* ✅ vw 사용 시 overflow 생길 수 있음 */
-  z-index: 99;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px 24px 16px; /* ✅ 하단 padding 더 넉넉하게 */
-  box-sizing: border-box;
-
-  background-color: ${({ variant }) =>
-    variant === 'light' ? 'rgba(100, 100, 100, 0.3)' : 'black'};
-  backdrop-filter: ${({ variant }) =>
-    variant === 'light' ? 'blur(6px)' : 'none'};
-`;
+  right: 0;
+  bottom: 56px;     /* 하단 내비(높이 예: 56px) 위에 딱 붙이기 */
+  padding: 16px;
+  background: #000;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.5);
+  `;
 
 // 왼쪽 사용자 영역
 export const ProfileTag = styled.div`
@@ -609,11 +603,12 @@ export const ProfileTag = styled.div`
 
 // 버튼
 export const HandleBadge = styled.div`
-  background-color: #333;
-  color: #ccc;
-  font-size: 13px;
+  background-color: #232323;
+  color: #E7E7E7;
+  font-size: 16.5px;
   padding: 6px 12px;
   border-radius: 20px;
+  size: 
 `;
 
 // 아이콘 그룹
@@ -708,7 +703,7 @@ export const LongText = styled.div`
   font-size: 18px;
   line-height: 130%;
   padding: 0 16px 32px 16px;
-  font-sixe :400;
+  font-weight : 300;
 `;
 
 export const BackgroundImage = styled.div`
@@ -922,7 +917,6 @@ export const Grid3 = styled.div`
 export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;         /* 화면 전체 높이 차지 */
   padding: 16px;
   box-sizing: border-box
 `;
@@ -1270,7 +1264,7 @@ export const PostBottomBar = styled.div<{ variant: 'dark' | 'light'}>`
   border-radius: 20px;
   /* transparent prop 처리 */
   background-color: ${({ variant }) =>
-    variant === 'dark' ? '#232323' : 'rgba(35, 35, 35, 0.3)'};
+    variant === 'dark' ? '#3B3B3B' : 'rgba(35, 35, 35, 0.3)'};
   backdrop-filter: ${({ variant }) =>
    variant === 'dark' ? 'none' : 'blur(2px)'};
   -webkit-backdrop-filter: ${({ variant }) =>
@@ -1288,3 +1282,90 @@ export const PostBottomBar = styled.div<{ variant: 'dark' | 'light'}>`
   margin-right: 10px;
 `;
 
+/* ───────────────────────────────────────── Upload ───────────────────────────────────────── */
+export const UploadWrapper = styled.div`
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 16px 0;
+`;
+
+export const UploadInput = styled.input.attrs({ type: 'file' })`
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  color: #6C6C6C;
+`;
+
+export const UploadLabel = styled.label`
+  /* 클릭 가능한 원형 버튼 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background-color: #CECECE;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  color: #ccc;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #555;
+  }
+  &::placeholder {
+    color: #black;
+    font-size: 18px;
+  }
+  
+
+  /* 업로드된 뒤에 체크 아이콘 등 변경이 필요하면
+     <UploadLabel uploaded> 형태로 props를 받을 수도 있습니다. */
+`;
+
+export const TextArea = styled.textarea`
+  width: 100%;
+  height: 100%;
+  padding: 12px 16px;
+  font-size: 17px;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.10);
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  &::placeholder {
+    color: #848484;
+    font-size: 18px;
+  }
+
+  &:focus {
+    border-color: #666;
+  }
+`;
+
+export const SmallInputWrapper = styled.div`
+  max-width: 100%;      
+  margin-bottom: 16px;
+  font-size :18px;
+  background: rgba(255, 255, 255, 0.10);
+`;
+
+export const InitialButtonRow = styled.div`
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;     /* 한 줄에 모두 표시 */
+  margin-bottom: 24px;
+  row-gap: 0px;
+`;
+
+export const UploadRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0;
+`;
