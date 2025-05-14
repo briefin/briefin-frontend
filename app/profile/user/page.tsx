@@ -73,7 +73,6 @@ export default function UserProfilePage() {
       {/* ✅ 프로필 정보 */}
       <Common.ProfileInfoWrapper>
         <Common.ProfileDetails>
-          <Common.ProfileImage src='/jordy.png' alt="profile" />
           <Common.UserInfoText>
             <Common.Username>@hihihi</Common.Username>
             <Common.PublisherStatsRow>

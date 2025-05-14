@@ -3,7 +3,7 @@
 import React from 'react';
 import * as Common from '@/styles/Common';
 import { useRouter } from 'next/navigation';
-import { SettingBtn } from '@/src/assets/icons';
+import { AddBtn, SettingBtn } from '@/src/assets/icons';
 
 const mockPublishers = [
   {

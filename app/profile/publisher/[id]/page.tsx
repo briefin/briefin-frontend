@@ -2,7 +2,7 @@
 
 import React from 'react';
 import * as Common from '@/styles/Common';
-import { SettingBtn } from '@/src/assets/icons';
+import { SettingBtn ,AddBtn} from '@/src/assets/icons';
 
 const mockData = [
   { img: '/image_1.png', title: '빈티지 단추 모음', author: '@mag.daily' },
@@ -59,9 +59,12 @@ export default function PublisherDetailPage() {
       </Common.PublisherItem>
 
       {/* 게시물 리스트 */}
-      <Common.PublisherStatsRow style={{ margin: '24px 0' }}>
+      <Common.PublisherStatsRow>
         <Common.FollowLabel>게시물</Common.FollowLabel>
         <Common.Value>{publisher.posts.toLocaleString()}</Common.Value>
+        <Common.AddIconButton>
+          <AddBtn />
+        </Common.AddIconButton>
       </Common.PublisherStatsRow>
       <Common.Grid3>
         {mockData.map((item, idx) => (

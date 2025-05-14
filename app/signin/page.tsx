@@ -39,6 +39,22 @@ export default function JoinPage() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      <Common.LabelRow>
+        <Common.Label>아이디</Common.Label>
+        {isPasswordMismatch && (
+          <Common.SmallText style={{ color: '#86FF0D' }}>
+            중복된 아이디입니다.
+          </Common.SmallText>
+        )}
+      </Common.LabelRow>
+      <Common.PasswordInputRow isError={isPasswordMismatch}>
+        <Common.PasswordInput
+          type={showConfirm ? 'text' : 'password'}
+          placeholder="@"
+          value={confirm}
+          onChange={(e) => setConfirm(e.target.value)}
+        />
+      </Common.PasswordInputRow>
 
 <Common.LabelRow>
         <Common.Label>비밀번호</Common.Label>

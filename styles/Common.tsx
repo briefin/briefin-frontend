@@ -15,7 +15,6 @@ const CenteredContainer = `
 
 export const Header = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
   background-color: black;
@@ -31,17 +30,30 @@ export const IconButton = styled.button`
   cursor: pointer;
 `;
 
+export const AddIconButton = styled.button`
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 4px;
+  cursor: pointer;
+  margin-right: auto;
+  margin-left: 260px;
+  padding-top: 10px;
+`;
+
 export const Wrapper = styled.main`
   min-height: 100vh;
   background-color: black;
   color: white;
   padding: 0;
-  padding-bottom: 50px;
+  margin-top: 20px;
 `;
 
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  margin: 10px;
   ${CenteredContainer}
 `;
 
@@ -187,7 +199,7 @@ export const HorizontalScroll = styled.div`
   display: flex;
   gap: 20px; // ✅ 카드 간 간격 피그마와 동일하게
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: visible;
 
   &::-webkit-scrollbar {
     display: none;
@@ -198,7 +210,8 @@ export const SuggestedCard = styled.div`
   flex: 0 0 auto;
   width: 220px;
   color: white;
-  overflow: hidden;
+  overflow: visible;
+  padding-bottom: 12px; 
   position: relative;
   padding: 1px;
   display: flex;
@@ -317,7 +330,7 @@ export const SuggestedSearchCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 20px;
+  padding: 20px;
   margin: 0 1px;
   box-sizing: border-box; // ✅ 꼭 필요!
   flex-shrink: 0;
@@ -373,7 +386,7 @@ const SearchFollowBtn = styled.img`
 `;
 
 export const SbCard = styled.div`
-  width: 160px;
+  width: 195px;
   background-color: black;
   color: white;
   display: flex;
@@ -418,7 +431,7 @@ export const TabWrapper = styled.div`
 `;
 
 export const Tab = styled.div<{ active?: boolean }>`
-  font-size: 14px;
+  font-size: 20px;
   font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
   color: ${({ active }) => (active ? 'white' : '#888')};
   cursor: pointer;
@@ -803,7 +816,7 @@ export const UserInfoText = styled.div`
 export const Username = styled.div`
   font-size: 20px;
   font-weight: 500;
-  margin-bottom : 10px;
+  margin-bottom : 15px;
   margin-left: 10px;
 `;
 
@@ -833,6 +846,7 @@ export const CategorySection = styled.div`
 export const CategoryTitle = styled.div`
   font-size: 18px;
   font-weight: 400;
+  margin-left: 10px;
   margin-bottom: 12px;
 `;
 
@@ -943,7 +957,7 @@ export const PasswordInput = styled.input`
   color: white;
   flex: 1;
   font-size: 14px;
-  height: 18px; 
+  height: 23px; 
   padding-bottom: 3px;
 
   &::placeholder {
@@ -958,6 +972,7 @@ export const SmallText = styled.span`
   font-size: 12px;
   color: #848484;
   font-weight: 400;
+  padding-top: 5px;
   margin-left: auto;  /* 이 한 줄로 오른쪽 끝으로 밀어줘 */
 `;
 
@@ -1114,6 +1129,7 @@ export const PublisherStats = styled.span`
 export const FollowLabel = styled.span`
   color: #888;
   margin-left: 10px;
+  font-size: 16px;
 `;
 
 
@@ -1199,4 +1215,25 @@ export const MyDescription = styled.p`
   margin: 4px 0;
   font-weight: 400;
   margin-left: 10px;       /* 위아래 간격 */
+`;
+
+
+export const FolderMenu = styled.div`
+  position: absolute;
+  top: 28px;
+  right: 0;
+  background: rgba(0,0,0,0.9);
+  border-radius: 4px;
+  padding: 4px 0;
+  z-index: 10;
+`;
+
+export const FolderItem = styled.div<{selected?: boolean}>`
+  padding: 6px 12px;
+  color: ${({ selected }) => (selected ? '#86FF0D' : '#fff')};
+  font-size: 14px;
+  cursor: pointer;
+  &:hover {
+    background: rgba(255,255,255,0.1);
+  }
 `;

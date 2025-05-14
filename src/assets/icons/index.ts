@@ -9,13 +9,13 @@ import  {default as ScrapbookWhiteBtn} from './scrapbook_white_btn.svg';
 import  {default as UserGrayBtn} from './user_gray_btn.svg';
 import  {default as UserWhiteBtn }from './user_white_btn.svg';
 import  {default as BackArrowBtn} from './backarrow_btn.svg';
-import  {default as FilterBtn} from './filter_btn.svg';
 import  {default as UploadBtn} from './upload_btn.svg';
 import  {default as SearchFollowBtn} from './search_follow_btn.svg';
 import  {default as LIkeBtn} from './like_btn.svg';
 import  {default as SettingBtn} from './setting_btn.svg';
 import  {default as KakaoBtn} from './kakao_btn.svg';
-
+import  {default as AddBtn} from './add_btn.svg';
+import  {default as FollowedIcon} from './followed_icon.svg';
 
 
 
@@ -29,10 +29,11 @@ export {
   UserGrayBtn,
   UserWhiteBtn,
   BackArrowBtn,
-  FilterBtn,
   UploadBtn,
   SearchFollowBtn,
   LIkeBtn,
   SettingBtn,
   KakaoBtn,
+  AddBtn,
+  FollowedIcon,
 };

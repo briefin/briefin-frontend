@@ -4,7 +4,8 @@ import SearchBar from '@/src/components/SearchBar';
 import { useRouter } from 'next/navigation';
 import { FiPlus, FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft, FiShare } from 'react-icons/fi';
 import * as Common from '@/styles/Common';
-import { UploadBtn } from '@/src/assets/icons';
+import { UploadBtn, BackArrowBtn, AddBtn} from '@/src/assets/icons';
+
 
 const mockData_sb = [
     {
@@ -13,7 +14,7 @@ const mockData_sb = [
     },
     {
       img: '/jordy.png',
-      title: '느중레시피',
+      title: '느좋레시피',
     },
 ];
 
@@ -26,12 +27,15 @@ export default function SearchPage() {
 
     <Common.Centered>
         <Common.Header>
-            <Common.IconButton><FiChevronLeft /></Common.IconButton>  
-            <Common.IconButton><FiPlus /></Common.IconButton>  
+            <Common.IconButton><BackArrowBtn /></Common.IconButton>  
+            <Common.IconButton><AddBtn /></Common.IconButton>  
         </Common.Header>      
     </Common.Centered>
 
-    <SearchBar />
+    <Common.Centered>    
+        <SearchBar />
+    </Common.Centered>
+
 
     <Common.Centered>
       <Common.Wrapper>

@@ -5,8 +5,10 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft  } from 'react-icons/fi';
 import * as Common from '@/styles/Common';
-import { BackArrowBtn, SearchFollowBtn} from '@/src/assets/icons';
+import { BackArrowBtn, SearchFollowBtn, FollowedIcon} from '@/src/assets/icons';
 import CategoryBar from '@/src/components/CategoryBar';
+
+
 
 
 const mockData = [
@@ -72,6 +74,10 @@ export default function SearchPage() {
   const [mockBookmarks, setMockBookmarks] = useState<boolean[]>(new Array(mockData.length).fill(false));
   const [mockBookmarks_2, setMockBookmarks_2] = useState<boolean[]>(new Array(mockData_2.length).fill(false));
   const [isSearchMode, setIsSearchMode] = useState(false);
+  const [suggestFollows, setSuggestFollows] = useState<boolean[]>(
+    new Array(suggestedData.length).fill(false)
+  );
+
 
   const toggleMockBookmarks = (index: number) => {
     setMockBookmarks(prev =>
@@ -82,6 +88,12 @@ export default function SearchPage() {
   const toggleMockBookmarks_2 = (index: number) => {
     setMockBookmarks_2(prev =>
       prev.map((b, i) => (i === index ? !b : b))
+    );
+  };
+
+  const toggleSuggestFollow = (index: number) => {
+    setSuggestFollows(prev =>
+      prev.map((v, i) => (i === index ? !v : v))
     );
   };
 
@@ -142,12 +154,28 @@ export default function SearchPage() {
                     <Common.SuggestedSearchTitle>{item.title}</Common.SuggestedSearchTitle>
                     <Common.SuggestedSearchHandle>{item.author}</Common.SuggestedSearchHandle>
                   </Common.SuggestedSearchInfo>
-                  <SearchFollowBtn src={SearchFollowBtn} alt="Follow Button" />
+
+                  {/* 팔로우 버튼: 클릭하면 아이콘 토글, 두 번 누르면 원상복구 */}
+                  <button
+                    onClick={() => toggleSuggestFollow(idx)}
+                       style={{
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                         cursor: 'pointer'
+                    }}
+                   >
+                  {suggestFollows[idx]     ? <FollowedIcon width={100} height={40} />
+                    : <SearchFollowBtn width={100} height={40} />
+                   }
+                 </button>
+
                 </Common.SuggestedSearchCard>
               ))}
             </Common.HorizontalScroll>
           </Common.SuggestedWrapper>
         </Common.Centered>
+
 
         <Common.Grid>
           {mockData_2.map((item, idx) => (
