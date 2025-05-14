@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { FiChevronLeft, FiHeart, FiBookmark, FiShare2 } from 'react-icons/fi';
 import * as Common from '@/styles/Common';
+import { BackArrowBtn,UploadBtn,LIkeBtn } from '@/src/assets/icons';
 
 export default function PostLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -33,7 +34,7 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
       <div>
         <Common.HeaderContainer>
           <Common.BackButton>
-            <FiChevronLeft />
+            <BackArrowBtn />
           </Common.BackButton>
           <Common.HeaderTitle>빈티지 단추 모음</Common.HeaderTitle>
         </Common.HeaderContainer>
@@ -71,9 +72,13 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
           <Common.HandleBadge>{readLabel}</Common.HandleBadge>
         </Common.ProfileTag>
         <Common.ActionIcons>
-          <FiHeart />
+          <LIkeBtn />
+       </Common.ActionIcons>
+       <Common.ActionIcons>
           <FiBookmark onClick={() => setIsBookmarkOpen(true)} />
-          <FiShare2 />
+        </Common.ActionIcons>
+        <Common.ActionIcons>
+          <UploadBtn />
         </Common.ActionIcons>
       </Common.BottomBar>
     </>

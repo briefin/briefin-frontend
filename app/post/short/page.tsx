@@ -18,7 +18,11 @@ export default function ShortPostPage() {
   return (
     <div>
       {/* 👉 이미지 뷰 */}
-      <Common.ImageViewer>
+      <Common.ImageViewer
+        onClick={() =>
+          setCurrentIndex((currentIndex + 1) % images.length)
+          }
+        style={{ cursor: 'pointer' }}>
         <Common.ViewerImage src={images[currentIndex]} alt={`image-${currentIndex}`} />
       </Common.ImageViewer>
 

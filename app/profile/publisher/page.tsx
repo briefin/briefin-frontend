@@ -2,8 +2,8 @@
 
 import React from 'react';
 import * as Common from '@/styles/Common';
-import { FiSettings } from 'react-icons/fi';
 import { useRouter } from 'next/navigation';
+import { SettingBtn } from '@/src/assets/icons';
 
 const mockPublishers = [
   {
@@ -23,9 +23,7 @@ const mockPublishers = [
 ];
 
 export default function PublisherPage() {
-
   const router = useRouter();
-
   const goToDetail = (id: string) => {
     router.push(`/profile/publisher/${id}`);
   };
@@ -34,25 +32,38 @@ export default function PublisherPage() {
     <Common.PublisherPageWrapper>
       {mockPublishers.map((publisher, idx) => (
         <Common.PublisherItem key={idx}>
-          <Common.PublisherInfo onClick={() => goToDetail(publisher.id.replace('@', ''))} style={{ cursor: 'pointer' }}>
+          {/* 왼쪽: 아바타 + 텍스트 그룹 */}
+          <Common.PublisherInfo onClick={() => goToDetail(publisher.id.replace('@', ''))}>
             <Common.PublisherAvatar src={publisher.avatar} alt={publisher.id} />
             <Common.PublisherTextGroup>
+              {/* 1) 최상단: 아이디 */}
               <Common.PublisherId>{publisher.id}</Common.PublisherId>
-              <Common.PublisherStats>
-                <span>팔로워 {publisher.followers}</span>
-                <span>팔로잉 {publisher.following}</span>
-              </Common.PublisherStats>
-              <Common.PublisherStats>
-                <span>게시물 {publisher.posts}</span>
-              </Common.PublisherStats>
+
+              {/* 2) 두번째 줄: 팔로워 · 팔로잉 */}
+              <Common.PublisherStatsRow>
+                <Common.FollowLabel>팔로워</Common.FollowLabel>
+                <Common.Value>{publisher.followers.toLocaleString()}</Common.Value>
+                <Common.FollowLabel>팔로잉</Common.FollowLabel>
+                <Common.Value>{publisher.following.toLocaleString()}</Common.Value>
+              </Common.PublisherStatsRow>
+
+              {/* 3) 세번째 줄: 게시물 */}
+              <Common.PublisherStatsRow>
+                <Common.FollowLabel>게시물</Common.FollowLabel>
+                <Common.Value>{publisher.posts.toLocaleString()}</Common.Value>
+              </Common.PublisherStatsRow>
             </Common.PublisherTextGroup>
           </Common.PublisherInfo>
-          <Common.IconButton>
-            <FiSettings />
-          </Common.IconButton>
+
+          {/* 오른쪽: 설정 버튼 */}
+          <Common.SettingIconButton onClick={() => {/* 설정 로직 */}}>
+            <SettingBtn />
+          </Common.SettingIconButton>
         </Common.PublisherItem>
       ))}
     </Common.PublisherPageWrapper>
   );
-
 }
+
+
+

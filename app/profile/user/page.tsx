@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { FiChevronLeft, FiSettings } from 'react-icons/fi';
 import * as Common from '@/styles/Common';
+import { SettingBtn } from '@/src/assets/icons';
 
 const mockData = [
   {
@@ -75,13 +76,18 @@ export default function UserProfilePage() {
           <Common.ProfileImage src='/jordy.png' alt="profile" />
           <Common.UserInfoText>
             <Common.Username>@hihihi</Common.Username>
-            <Common.Stats>팔로잉 12  하트수 6</Common.Stats>
+            <Common.PublisherStatsRow>
+              <Common.FollowLabel>팔로잉</Common.FollowLabel>
+              <Common.Value>12</Common.Value>
+              <Common.FollowLabel>하트수</Common.FollowLabel>
+              <Common.Value>6</Common.Value>
+             </Common.PublisherStatsRow>
           </Common.UserInfoText>
         </Common.ProfileDetails>
 
-        <Common.IconButton>
-          <FiSettings />
-        </Common.IconButton>
+        <Common.SettingIconButton>
+          <SettingBtn />
+        </Common.SettingIconButton>
       </Common.ProfileInfoWrapper>
 
       {/* ✅ 선호 카테고리리 섹션 */} 
@@ -98,7 +104,7 @@ export default function UserProfilePage() {
 
       {/* ✅ 선호 퍼블리셔 섹션 */}
       <Common.Centered>
-        <Common.SuggestedWrapper>
+        <Common.SuggestedPublisherWrapper>
           <Common.CategoryTitle>선호 퍼블리셔</Common.CategoryTitle>
           <Common.HorizontalScroll>
             {suggestedData.map((item, idx) => (
@@ -111,14 +117,14 @@ export default function UserProfilePage() {
               </Common.SuggestedSearchCard>
             ))}
           </Common.HorizontalScroll>
-        </Common.SuggestedWrapper>
+        </Common.SuggestedPublisherWrapper>
       </Common.Centered>
 
       {/* ✅ 하트한 게시물 섹션 */}
-      <Common.CategoryTitle>하트한 계시물</Common.CategoryTitle>
+      <Common.CategoryTitle>하트한 게시물</Common.CategoryTitle>
       <Common.Grid3>
         {mockData.map((item, idx) => (
-          <Common.Card key={idx}>
+          <Common.LikeCard key={idx}>
             <Common.Image src={item.img} alt={item.title} />
             <Common.BookmarkWrapper>
               {mockBookmarks[idx] && (
@@ -137,7 +143,7 @@ export default function UserProfilePage() {
               <Common.Title>{item.title}</Common.Title>
               <Common.Author>{item.author}</Common.Author>
             </Common.Overlay>
-          </Common.Card>
+          </Common.LikeCard>
         ))}
       </Common.Grid3>
 

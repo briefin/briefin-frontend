@@ -52,6 +52,20 @@ export const Card = styled.div`
   overflow: hidden;
 `;
 
+export const MyCard = styled.div`
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.3;
+  overflow: hidden;
+`;
+
+export const LikeCard = styled.div`
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.4;
+  overflow: hidden;
+`;
+
 export const Image = styled.img`
   width: 100%;
   height: 100%;
@@ -106,6 +120,9 @@ export const CategoryButton = styled.button<{ active?: boolean }>`
   font-size: 14px;
   border-radius: 0;
   cursor: pointer;
+  padding-bottom: 10px;
+  margin-bottom:10px;
+  margin-left: 10px;
 `;
 
 export const BottomNav = styled.nav`
@@ -137,6 +154,13 @@ export const NavIcon = styled.button`
 export const SuggestedWrapper = styled.div`
   margin-top: 32px;
   padding: 20px; // 🔥 사방 여백 모두 포함!
+  box-sizing: border-box;
+  overflow-x: hidden;
+  ${CenteredContainer}
+`;
+
+export const SuggestedPublisherWrapper = styled.div`
+  margin-top: 32px;
   box-sizing: border-box;
   overflow-x: hidden;
   ${CenteredContainer}
@@ -212,12 +236,14 @@ export const SuggestedOverlay = styled.div`
 
 export const BriefinLogo = styled.div`
   height: auto;
-  margin-bottom: 8px;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
 `;
 
 export const BriefinTitle = styled.h1`
   font-family: 'neurimboGothicRegular', sans-serif;
-  width: 189px;
+  width: 160px;
   height: 83px;
   font-size: 50px;
   font-weight: normal;
@@ -517,11 +543,12 @@ export const TagRow = styled.div`
 `;
 
 export const TagBadge = styled.div`
-  background-color: #1a1a1a;
+  background-color: #3B3B3B;
   color: white;
-  font-size: 13px;
+  font-size: 18px;
+  font-weight: 500;
   padding: 6px 12px;
-  border-radius: 20px;
+  border-radius: 10px;
   white-space: nowrap;
 `;
 
@@ -593,6 +620,7 @@ export const IndicatorDot = styled.button<{ active?: boolean }>`
   width: 8px;
   height: 8px;
   border-radius: 50%;
+  padding: 0;
   border: none;
   background-color: ${({ active }) => (active ? 'white' : '#888')};
   cursor: pointer;
@@ -606,6 +634,7 @@ export const ImageViewer = styled.div`
   max-width: 480px;
   height : 550px;
   margin: 0 auto;
+  
 `;
 
 export const ViewerImage = styled.img`
@@ -684,9 +713,9 @@ export const BookmarkOverlay = styled.div`
 export const BookmarkSelectBox = styled.div`
   width: 100%;
   max-width: 480px;
-  background-color: #333;
-  padding: 16px;
-  border-radius: 12px 12px 0 0;
+  background-color: #3B3B3B;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
   color: white;
   z-index: 1000;
 
@@ -704,15 +733,14 @@ export const BookmarkItem = styled.div`
 
 export const ScrapToast = styled.div`
   position: fixed;
-  top: 50%;
+  top: 43%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: black;
+  background-color: #232323;
   color: white;
-  padding: 24px 32px;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: bold;
+  padding: 44px 32px;
+  font-size: 20px;
+  font-weight: 600;
   z-index: 1001;
   display: flex;
   flex-direction: column;
@@ -724,44 +752,10 @@ export const ScrapImage = styled.img`
   width: 48px;
   height: 48px;
   margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 22px;
 `;
 
-export const PublisherPageWrapper = styled.div`
-  background-color: black;
-  color: white;
-  padding: 24px 16px;
-  min-height: 100vh;
-`;
-
-export const PublisherItem = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-`;
-
-export const PublisherAvatar = styled.img`
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  object-fit: cover;
-`;
-
-export const PublisherTextGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const PublisherId = styled.div`
-  font-size: 15px;
-  font-weight: bold;
-  margin-bottom: 4px;
-`;
-
-export const PublisherStats = styled.div`
-  font-size: 13px;
-  color: #aaa;
-`;
 
 export const ProfilePageWrapper = styled.div`
   padding: 0 16px;
@@ -788,8 +782,8 @@ export const ProfileTab = styled.div`
 `;
 
 export const ProfileImage = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
 `;
 
@@ -799,8 +793,10 @@ export const UserInfoText = styled.div`
 `;
 
 export const Username = styled.div`
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom : 10px;
+  margin-left: 10px;
 `;
 
 export const Stats = styled.div`
@@ -827,8 +823,8 @@ export const CategorySection = styled.div`
 `;
 
 export const CategoryTitle = styled.div`
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: 400;
   margin-bottom: 12px;
 `;
 
@@ -872,9 +868,6 @@ export const PublisherImage = styled.img`
   object-fit: cover;
 `;
 
-export const PublisherInfo = styled.div`
-  padding: 8px;
-`;
 
 export const PublisherTitle = styled.div`
   font-size: 13px;
@@ -891,17 +884,16 @@ export const PublisherHandle = styled.div`
 export const Grid3 = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);  /* ✅ 3열 */
-  gap: 12px;
-  padding: 0 16px;
   margin: 0 auto;
   max-width: 100%;
 `;
 
 export const FormWrapper = styled.div`
-  padding: 24px 16px;
-  background-color: black;
-  color: white;
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;         /* 화면 전체 높이 차지 */
+  padding: 16px;
+  box-sizing: border-box
 `;
 
 export const FormHeader = styled.div`
@@ -914,23 +906,25 @@ export const FormHeader = styled.div`
 `;
 
 export const Label = styled.label`
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: 500;
   margin-top: 16px;
   display: block;
 `;
 
 export const InputField = styled.input`
   width: 100%;
-  background-color: #1a1a1a;
+  background-color: rgba(255, 255, 255, 0.10);
   border: none;
-  padding: 12px;
+  padding: 13px;
   margin-top: 6px;
   color: white;
   font-size: 14px;
 
   &::placeholder {
-    color: #777;
+    color: #848484;
+    font-size: 16px;
+    font-weight:400;
   }
 `;
 
@@ -941,10 +935,26 @@ export const PasswordInput = styled.input`
   color: white;
   flex: 1;
   font-size: 14px;
+  height: 18px; 
 
   &::placeholder {
     color: #777;
+    font-size: 16px;
+    font-weight: 400;
   }
+`;
+
+export const SmallText = styled.span`
+  font-size: 12px;
+  color: #848484;
+  font-weight: 400;
+  margin-left: auto;  /* 이 한 줄로 오른쪽 끝으로 밀어줘 */
+`;
+
+export const LabelRow = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
 `;
 
 export const EyeButton = styled.button`
@@ -961,7 +971,7 @@ export const SubmitButton = styled.button`
   padding: 14px;
   background-color: white;
   color: black;
-  font-weight: bold;
+  font-weight: 600;
   border: none;
   font-size: 16px;
   cursor: pointer;
@@ -971,32 +981,34 @@ export const PasswordInputRow = styled.div<{ isError?: boolean }>`
   display: flex;
   align-items: center;
   background-color: #1a1a1a;
-  padding: 12px;
+  padding: 4px;
   margin-top: 6px;
-  border: ${({ isError }) => (isError ? '1px solid #7fff00' : 'none')};  /* 연두색 */
+  border: 2px ${({ isError }) => (isError ? '1px solid #7fff00' : 'none')};  /* 연두색 */
 `;
 
 export const WarningText = styled.div`
   color: #7fff00;
-  font-size: 12px;
+  font-size: 14px;
   text-align: right;
-  margin-top: 4px;
+  margin-top: 1px;
+  right: 12px;
 `;
 
 export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;  /* ✅ 상하 분리 */
   align-items: center;
   min-height: 100vh;
   padding: 48px 24px;
   background-color: black;
   color: white;
+  justify-content: space-between;
 `;
 
 
 export const Logo = styled.img`
   width: 48px;
+  font-family: 'neurimboGothicRegular'
   height: 48px;
   margin-bottom: 16px;
 `;
@@ -1009,32 +1021,31 @@ export const LogoText = styled.h1`
 `;
 
 export const KakaoButton = styled.button`
-  background-color: #ffeb00;
-  color: black;
-  width: 100%;
-  padding: 12px;
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 40px;
+  margin-bottom: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
   border: none;
   cursor: pointer;
+  background: black;
+  padding: 10px;
+  width: 105%;
 `;
 
 export const LoginInput = styled.input<{ isError?: boolean }>`
   width: 100%;
   padding: 12px;
   margin-bottom: 12px;
-  background-color: #1a1a1a;
+  background-color: rgba(255, 255, 255, 0.10);
+  padding: 0 16px;
+  height: 48px; 
   color: white;
-  border: ${({ isError }) => (isError ? '1px solid #7fff00' : 'none')};
+  border: ${({ isError }) => (isError ? '1px solid #86FF0D' : 'none')};
   font-size: 14px;
 
   &::placeholder {
-    color: #777;
+    color: #848484;
+    font-size: 16px;
   }
 `;
 
@@ -1051,9 +1062,10 @@ export const LoginButton = styled.button`
 `;
 
 export const LoginBottomText = styled.div`
-  font-size: 12px;
-  color: #888;
+  font-size: 16px;
+  color: #E7E7E7;
   margin-top: 16px;
+  font-weight: 600;
 
   a {
     color: white;
@@ -1069,6 +1081,7 @@ export const LoginTop = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding-bottom : 350px;
 `;
 
 export const LoginBottom = styled.div`
@@ -1077,4 +1090,103 @@ export const LoginBottom = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+
+export const PublisherStats = styled.span`
+  color: #9D9D9D;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+
+`;
+
+export const FollowLabel = styled.span`
+  color: #888;
+  margin-left: 10px;
+`;
+
+
+
+export const PublisherPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px;
+`;
+
+export const PublisherItem = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px 0;
+`;
+
+export const PublisherInfo = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+`;
+
+export const PublisherAvatar = styled.img`
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 2px;
+ 
+`;
+
+export const PublisherTextGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+`;
+
+export const PublisherId = styled.span`
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+`;
+
+export const PublisherStatsGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  margin-left: 32px; /* 아바타와 통계 사이 간격 */
+`;
+
+export const PublisherStatsRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+
+export const Value = styled.span`
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+`;
+
+
+export const SettingIconButton = styled.button`
+  background: none;
+  border: none;
+  color: white;
+  margin-top: 35px;
+  cursor: pointer;
+`;
+export const MyDescription = styled.p`
+  color: #9D9D9D;         /* 연한 회색 */
+  font-size: 14px;
+  margin: 4px 0;
+  font-weight: 400;
+  margin-left: 10px;       /* 위아래 간격 */
 `;

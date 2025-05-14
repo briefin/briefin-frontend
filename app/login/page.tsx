@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import * as Common from '@/styles/Common';
 import { FiMessageSquare } from 'react-icons/fi';
+import { KakaoBtn } from '@/src/assets/icons';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -41,18 +42,16 @@ export default function LoginPage() {
     <Common.LoginWrapper>
       <Common.LoginTop>
         <Common.Logo src="/briefin_logo.png" alt="logo" />
-        <Common.LogoText>BRIEFIN</Common.LogoText>
       </Common.LoginTop>
 
       <Common.LoginBottom>
         <Common.KakaoButton>
-          <FiMessageSquare />
-          Log In with Kakao
+          <KakaoBtn />
         </Common.KakaoButton>
 
         <Common.LoginInput
           type="text"
-          placeholder="아이디"
+          placeholder="이메일"
           value={userId}
           onChange={(e) => setUserId(e.target.value)}
         />
@@ -66,7 +65,7 @@ export default function LoginPage() {
         />
 
         {loginFailed && (
-          <Common.WarningText>아이디 또는 비밀번호가 올바르지 않습니다.</Common.WarningText>
+          <Common.WarningText> 다시 입력해주세요.</Common.WarningText>
         )}
 
         <Common.LoginButton onClick={handleLogin}>로그인</Common.LoginButton>

@@ -105,7 +105,6 @@ export default function Page() {
 
       <Common.Centered>
         <Common.ButtonRow>
-          <Common.IconButton><FilterBtn/></Common.IconButton>
           <Common.CategoryButton active>패션</Common.CategoryButton>
           <Common.CategoryButton>인터뷰</Common.CategoryButton>
           <Common.CategoryButton>맛집</Common.CategoryButton>

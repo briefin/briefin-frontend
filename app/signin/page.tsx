@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { FiChevronLeft, FiEye, FiEyeOff } from 'react-icons/fi';
 import * as Common from '@/styles/Common';
+import { BackArrowBtn } from '@/src/assets/icons';
 
 export default function JoinPage() {
   const [name, setName] = useState('');
@@ -19,7 +20,7 @@ export default function JoinPage() {
     <Common.FormWrapper>
       {/* 헤더 */}
       <Common.FormHeader>
-        <FiChevronLeft />
+        <BackArrowBtn />
         회원가입
       </Common.FormHeader>
 
@@ -39,10 +40,10 @@ export default function JoinPage() {
         onChange={(e) => setEmail(e.target.value)}
       />
 
-      {/* 비밀번호 */}
-      <Common.Label>
-        비밀번호 <span style={{ fontSize: '12px', color: '#888' }}>최소 8자, 영어, 특수기호 포함</span>
-      </Common.Label>
+<Common.LabelRow>
+        <Common.Label>비밀번호</Common.Label>
+        <Common.SmallText>최소 8자, 영어, 특수기호 포함</Common.SmallText>
+      </Common.LabelRow>
       <Common.PasswordInputRow>
         <Common.PasswordInput
           type={showPassword ? 'text' : 'password'}
@@ -56,10 +57,14 @@ export default function JoinPage() {
       </Common.PasswordInputRow>
 
       {/* 비밀번호 확인 */}
-      <Common.Label>
-        비밀번호 확인{' '}
-        {isPasswordMismatch && <span style={{ color: '#7fff00', fontSize: '12px' }}>다시 입력해주세요.</span>}
-      </Common.Label>
+      <Common.LabelRow>
+        <Common.Label>비밀번호 확인</Common.Label>
+        {isPasswordMismatch && (
+          <Common.SmallText style={{ color: '#86FF0D' }}>
+            다시 입력해주세요.
+          </Common.SmallText>
+        )}
+      </Common.LabelRow>
       <Common.PasswordInputRow isError={isPasswordMismatch}>
         <Common.PasswordInput
           type={showConfirm ? 'text' : 'password'}
@@ -73,7 +78,7 @@ export default function JoinPage() {
       </Common.PasswordInputRow>
 
       {/* 제출 버튼 */}
-      <Common.SubmitButton>회원가입</Common.SubmitButton>
+      <Common.SubmitButton style={{ marginTop: 'auto' }}>회원가입</Common.SubmitButton>
     </Common.FormWrapper>
   );
 }

@@ -13,6 +13,8 @@ import  {default as FilterBtn} from './filter_btn.svg';
 import  {default as UploadBtn} from './upload_btn.svg';
 import  {default as SearchFollowBtn} from './search_follow_btn.svg';
 import  {default as LIkeBtn} from './like_btn.svg';
+import  {default as SettingBtn} from './setting_btn.svg';
+import  {default as KakaoBtn} from './kakao_btn.svg';
 
 
 
@@ -31,4 +33,6 @@ export {
   UploadBtn,
   SearchFollowBtn,
   LIkeBtn,
+  SettingBtn,
+  KakaoBtn,
 };
