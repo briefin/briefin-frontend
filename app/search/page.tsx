@@ -100,22 +100,6 @@ export default function SearchPage() {
 
   return (
     <>
-
-      <Common.Centered>
-        <Common.Header>
-          <Common.IconButton><BackArrowBtn /></Common.IconButton>  
-        </Common.Header>      
-      </Common.Centered>
-      
-      <Common.ContentWrapper>
-        <Common.Centered style={{ margin: '8px 0' }}>
-          <SearchBar />
-        </Common.Centered>
-        <Common.Centered>
-          <CategoryBar />
-        </Common.Centered>
-      </Common.ContentWrapper>
-
       <Common.Wrapper>
         <Common.Grid>
           {mockData.map((item, idx) => (

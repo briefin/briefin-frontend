@@ -16,13 +16,15 @@ export default function ProfileLayout({ children }: { children: React.ReactNode 
 
   return (
     <>
-        <Common.Header>
+        <Common.Header style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <Common.IconButton><BackArrowBtn/></Common.IconButton>  
                 <Common.TabWrapper>
                     <Common.Tab active={isUser} onClick={() => router.push('/profile/user')}>User</Common.Tab>
                     <Common.Tab active={isPublisher} onClick={() => router.push('/profile/publisher')}>Publisher</Common.Tab>
                 </Common.TabWrapper>
-            <Common.IconButton><AddBtn /></Common.IconButton> 
+              </div>
+            <Common.AddIconButton ><AddBtn/></Common.AddIconButton> 
         </Common.Header>      
 
       {children}

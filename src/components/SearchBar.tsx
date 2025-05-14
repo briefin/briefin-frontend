@@ -1,7 +1,7 @@
 // src/components/SearchBar.tsx
 'use client';
 
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, FocusEvent} from 'react';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
@@ -41,13 +41,12 @@ const SearchInput = styled.input`
   color: #fff;
   outline: none;
   line-height: 20px;
-  padding-bottom: 2px;
+  padding-bottom: 4px;
 
   &::placeholder {
     color: #3B3B3B;               /* placeholder 색 */
     font-size: 14px;           /* placeholder 크기 */
     font-weight: 400;
-
   }
 `;
 
@@ -62,12 +61,18 @@ export default function SearchBar() {
     }
   };
 
+  const handleFocus = () => {    // 실제 URL 경로로 푸시!
+     router.push('/search/whilesearching');
+  };
+    
+
   return (
     <SearchWrapper onSubmit={handleSubmit}>
       <SearchButton type="submit">
         <img src="/assets/search-icon.svg" alt="검색" width={24} height={24} />
       </SearchButton>
       <SearchInput
+        onFocus={handleFocus}
         type="text"
         value={query}
         placeholder="Search contents"

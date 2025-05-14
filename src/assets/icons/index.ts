@@ -16,6 +16,7 @@ import  {default as SettingBtn} from './setting_btn.svg';
 import  {default as KakaoBtn} from './kakao_btn.svg';
 import  {default as AddBtn} from './add_btn.svg';
 import  {default as FollowedIcon} from './followed_icon.svg';
+import  {default as WUploadBtn} from './white_upload_btn.svg';
 
 
 
@@ -36,4 +37,5 @@ export {
   KakaoBtn,
   AddBtn,
   FollowedIcon,
+  WUploadBtn,
 };

@@ -48,6 +48,9 @@ export const Wrapper = styled.main`
   color: white;
   padding: 0;
   margin-top: 20px;
+  width : 100%
+  margin-top: -5px;
+
 `;
 
 export const Grid = styled.div`
@@ -138,11 +141,13 @@ export const CategoryButton = styled.button<{ active?: boolean }>`
 export const ContentWrapper = styled.div`
   width: 100%;
   margin: 0 auto;         /* 화면 가로 중앙 정렬 */
-  padding: 0 20px;        /* 좌우 16px 여백 */
+  padding: 0 20px;       
   box-sizing: border-box; /* 패딩 포함해서 계산 */
   display: flex;
   flex-direction: column;
   gap: 12px;              /* 자식들 사이 간격 */
+  margin-bottom: -20px;
+  
 `;
 
 export const BottomNav = styled.nav`
@@ -547,14 +552,17 @@ export const HeaderContainer = styled.div`
   backdrop-filter: blur(6px);
   position: sticky;
   top: 0;
+  margin-tiop: 10px;
   z-index: 1000;
 `;
 
 export const HeaderTitle = styled.h1`
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   color: white;
   margin: 0;
+  background: transparent;
+  padding-left: 5px;
 `;
 
 export const TagRow = styled.div`
@@ -564,13 +572,13 @@ export const TagRow = styled.div`
 `;
 
 export const TagBadge = styled.div`
-  background-color: #3B3B3B;
-  color: white;
-  font-size: 18px;
-  font-weight: 500;
+  background-color: #232323;
+  color: #B6B6B6;
+  font-size: 17px;
+  font-weight: 400;
   padding: 6px 12px;
-  border-radius: 10px;
   white-space: nowrap;
+  margin-bottom: 10px;
 `;
 
 // 공통 Wrapper
@@ -677,7 +685,7 @@ export const HorizontalBlock = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 16px;
+  padding: 10px;
 `;
 
 export const SquareImage = styled.img`
@@ -691,6 +699,7 @@ export const SummaryText = styled.div`
   color: white;
   font-size: 18px;
   line-height: 130%;
+  font-weight: 400;
   flex: 1;
 `;
 
@@ -1237,3 +1246,45 @@ export const FolderItem = styled.div<{selected?: boolean}>`
     background: rgba(255,255,255,0.1);
   }
 `;
+
+
+export const PostHeaderContainer = styled.div<{ transparent?: boolean }>`
+  display: flex;
+  align-items: center;
+  padding: 25px 12px;
+  height: 30px;
+  /* transparent prop 처리 */
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: ${({ transparent }) => (transparent ? 10 : 'auto')};
+`;
+
+export const PostBottomBar = styled.div<{ variant: 'dark' | 'light'}>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 20px;
+  /* transparent prop 처리 */
+  background-color: ${({ variant }) =>
+    variant === 'dark' ? '#232323' : 'rgba(35, 35, 35, 0.3)'};
+  backdrop-filter: ${({ variant }) =>
+   variant === 'dark' ? 'none' : 'blur(2px)'};
+  -webkit-backdrop-filter: ${({ variant }) =>
+   variant === 'dark' ? 'none' : 'blur(2px)'};
+
+ /* 배경이 블러 될 때 모서리 밖으로 번지는 걸 방지 */
+  background-clip: padding-box;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 90%;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+`;
+

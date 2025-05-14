@@ -110,7 +110,7 @@ export default function Page() {
         </Common.ButtonRow>
       </Common.Centered>
 
-      <Common.Wrapper>
+      <Common.Wrapper style={{marginTop:'10px'}}>
         <Common.Grid>
           {mockData.map((item, idx) => (
             <Common.Card key={idx}>
@@ -136,10 +136,9 @@ export default function Page() {
           ))}
         </Common.Grid>
 
-        {/* ✅ Suggested for you 섹션 */}
 {/* ✅ Suggested for you 섹션 */}
         <Common.Centered>
-          <Common.SuggestedWrapper>
+          <Common.SuggestedWrapper style={{marginTop :'-5px'}}>
             <Common.SectionTitle>Suggested for you</Common.SectionTitle>
             <Common.HorizontalScroll>
               {suggestedData.map((item, idx) => (

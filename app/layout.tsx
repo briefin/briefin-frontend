@@ -34,7 +34,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko">
       <body>
         <GlobalStyle />
-        {children}
+        <div style={{ paddingBottom: 'calc(60px + env(safe-area-inset-bottom))' }}>
+          {children}
+        </div>
 
         {showBottomNav && (
           <Common.Centered>

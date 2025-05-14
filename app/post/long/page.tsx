@@ -37,10 +37,10 @@ export default function LongPostPage() {
         {blocks.map((block, index) => (
           <div key={index}>
             <Common.HorizontalBlock>
-              <Common.SquareImage src={block.img} alt={`image-${index}`} />
-              <Common.SummaryText>{block.summary}</Common.SummaryText>
+              <Common.SquareImage src={block.img} alt={`image-${index}`}/>
+              <Common.SummaryText style={{paddingTop : '5px'}}>{block.summary}</Common.SummaryText>
             </Common.HorizontalBlock>
-            <Common.LongText>{block.body}</Common.LongText>
+            <Common.LongText style={{paddingTop : '0px',}}>{block.body}</Common.LongText>
           </div>
         ))}
       </div>
