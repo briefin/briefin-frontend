@@ -5,7 +5,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft, FiBookmark   } from 'react-icons/fi';
 import Image from 'next/image'; 
-import { BackArrowBtn,FilterBtn } from '@/src/assets/icons';
+import { BackArrowBtn, } from '@/src/assets/icons';
+import CategoryBar from '@/src/components/CategoryBar';
 
 
 const mockData = [
@@ -105,9 +106,7 @@ export default function Page() {
 
       <Common.Centered>
         <Common.ButtonRow>
-          <Common.CategoryButton active>패션</Common.CategoryButton>
-          <Common.CategoryButton>인터뷰</Common.CategoryButton>
-          <Common.CategoryButton>맛집</Common.CategoryButton>
+          <CategoryBar style={{ marginLeft: '20px' }}/>
         </Common.ButtonRow>
       </Common.Centered>
 

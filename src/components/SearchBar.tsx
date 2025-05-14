@@ -5,32 +5,19 @@ import React, { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
-// 🔧 리팩토링된 flex 기반 SearchBar 스타일
+// ────────────────────────────────────────────────────────────
+// 1️⃣ SearchWrapper: SVG 제거, 직사각형 박스 스타일로 변경
+// ────────────────────────────────────────────────────────────
 const SearchWrapper = styled.form`
   display: flex;
-  align-items: center; // 🔥 세로 정렬
-  gap: 10px;
-  padding: 10px 14px;
+  align-items: center;
+  gap: 8px;
   width: 100%;
   max-width: 390px;
-  height: 44px;
-  margin: 0 auto;
-  background: url('/assets/search-bg.svg') no-repeat center center;
-  background-size: 100% 100%;
-  border-radius: 12px;
+  height: 40px;
+  padding: 0 10px;
+  background-color: #232323;       /* 짙은 회색 배경 */
   box-sizing: border-box;
-`;
-
-const SearchInput = styled.input`
-  flex: 1;
-  height: 100%;
-  border: none;
-  background: transparent;
-  font-size: 16px;
-  line-height: 20px;      // 🔧 글자가 너무 위로 붙지 않게
-  padding-top: 21px;       // 🔧 살짝 아래로 내려오게
-  color: white;
-  outline: none;
 `;
 
 const SearchButton = styled.button`
@@ -40,11 +27,29 @@ const SearchButton = styled.button`
   background: transparent;
   padding: 0;
   cursor: pointer;
-  align-self: center;  
-  position: relative;
-  left: 4px;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
+const SearchInput = styled.input`
+  flex: 1;
+  height: 100%;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #fff;
+  outline: none;
+  line-height: 20px;
+  padding-bottom: 2px;
+
+  &::placeholder {
+    color: #3B3B3B;               /* placeholder 색 */
+    font-size: 14px;           /* placeholder 크기 */
+    font-weight: 400;
+
+  }
+`;
 
 export default function SearchBar() {
   const router = useRouter();
@@ -60,21 +65,18 @@ export default function SearchBar() {
   return (
     <SearchWrapper onSubmit={handleSubmit}>
       <SearchButton type="submit">
-        <img
-          src="/assets/search-icon.svg"
-          alt="검색"
-          width={24}
-          height={24}
-        />
+        <img src="/assets/search-icon.svg" alt="검색" width={24} height={24} />
       </SearchButton>
       <SearchInput
         type="text"
         value={query}
+        placeholder="Search contents"
         onChange={e => setQuery(e.target.value)}
       />
     </SearchWrapper>
   );
 }
+
 
 
 

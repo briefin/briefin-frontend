@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft  } from 'react-icons/fi';
 import * as Common from '@/styles/Common';
 import { BackArrowBtn, SearchFollowBtn} from '@/src/assets/icons';
+import CategoryBar from '@/src/components/CategoryBar';
 
 
 const mockData = [
@@ -93,18 +94,15 @@ export default function SearchPage() {
           <Common.IconButton><BackArrowBtn /></Common.IconButton>  
         </Common.Header>      
       </Common.Centered>
-
-      <Common.Centered style={{ margin: '15px 0' }}>
-        <SearchBar />
-      </Common.Centered>
-
-      <Common.Centered>
-        <Common.ButtonRow>
-          <Common.CategoryButton active>패션</Common.CategoryButton>
-          <Common.CategoryButton>인터뷰</Common.CategoryButton>
-          <Common.CategoryButton>맛집</Common.CategoryButton>
-        </Common.ButtonRow>
-      </Common.Centered>
+      
+      <Common.ContentWrapper>
+        <Common.Centered style={{ margin: '8px 0' }}>
+          <SearchBar />
+        </Common.Centered>
+        <Common.Centered>
+          <CategoryBar />
+        </Common.Centered>
+      </Common.ContentWrapper>
 
       <Common.Wrapper>
         <Common.Grid>

@@ -113,16 +113,24 @@ export const ButtonRow = styled.div`
 
 export const CategoryButton = styled.button<{ active?: boolean }>`
   height: 35px;
-  padding: 6px 14px;
-  border: 1px solid grey;
-  background-color: ${({ active }) => (active ? 'white' : 'transparent')};
+  background-color: ${({ active }) => (active ? 'white' : '#232323')};
   color: ${({ active }) => (active ? 'black' : 'white')};
-  font-size: 14px;
+  font-size: 15px;
   border-radius: 0;
   cursor: pointer;
-  padding-bottom: 10px;
-  margin-bottom:10px;
-  margin-left: 10px;
+  margin-bottom: 20px;
+  
+  
+`;
+
+export const ContentWrapper = styled.div`
+  width: 100%;
+  margin: 0 auto;         /* 화면 가로 중앙 정렬 */
+  padding: 0 20px;        /* 좌우 16px 여백 */
+  box-sizing: border-box; /* 패딩 포함해서 계산 */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;              /* 자식들 사이 간격 */
 `;
 
 export const BottomNav = styled.nav`
@@ -936,11 +944,13 @@ export const PasswordInput = styled.input`
   flex: 1;
   font-size: 14px;
   height: 18px; 
+  padding-bottom: 3px;
 
   &::placeholder {
     color: #777;
     font-size: 16px;
     font-weight: 400;
+    
   }
 `;
 
