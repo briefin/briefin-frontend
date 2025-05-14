@@ -70,6 +70,7 @@ export default function SearchPage() {
 
   const [mockBookmarks, setMockBookmarks] = useState<boolean[]>(new Array(mockData.length).fill(false));
   const [mockBookmarks_2, setMockBookmarks_2] = useState<boolean[]>(new Array(mockData_2.length).fill(false));
+  const [isSearchMode, setIsSearchMode] = useState(false);
 
   const toggleMockBookmarks = (index: number) => {
     setMockBookmarks(prev =>

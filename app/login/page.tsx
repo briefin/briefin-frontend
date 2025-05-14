@@ -1,139 +1,80 @@
-// app/login/page.tsx
 'use client';
 
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import styled from 'styled-components';
+import * as Common from '@/styles/Common';
+import { FiMessageSquare } from 'react-icons/fi';
 
 export default function LoginPage() {
   const router = useRouter();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [userId, setUserId] = useState('');
+  const [userPw, setUserPw] = useState('');
+  const [loginFailed, setLoginFailed] = useState(false);
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const handleLogin = async () => {
     try {
-      const res = await fetch('http://10.124.204.201:4000/auth/login', {
+      const res = await fetch('http://localhost:4000/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
         credentials: 'include',
+        body: JSON.stringify({
+          username: userId,
+          password: userPw,
+        }),
       });
+
       if (res.ok) {
-        router.push('/main');
+        const data = await res.json();
+        console.log('로그인 성공:', data);
+        setLoginFailed(false);
+        router.push('/main'); // 원하는 페이지로 이동
       } else {
-        alert('로그인 실패');
+        setLoginFailed(true);
       }
     } catch (err) {
-      console.error(err);
-      alert('네트워크 에러');
+      console.error('로그인 요청 에러:', err);
+      setLoginFailed(true);
     }
   };
 
-  /*const handleNaverLogin = () => {
-    window.location.href = 'https://nid.naver.com/oauth2.0/authorize?...';
-  };
-  const handleKakaoLogin = () => {
-    window.location.href = 'https://kauth.kakao.com/oauth/authorize?...';
-  };*/
-
   return (
-    <Container>
-      <Title>로그인</Title>
+    <Common.LoginWrapper>
+      <Common.LoginTop>
+        <Common.Logo src="/briefin_logo.png" alt="logo" />
+        <Common.LogoText>BRIEFIN</Common.LogoText>
+      </Common.LoginTop>
 
-      <Form onSubmit={handleSubmit}>
-        <Input
-          value={username}
-          onChange={e => setUsername(e.target.value)}
+      <Common.LoginBottom>
+        <Common.KakaoButton>
+          <FiMessageSquare />
+          Log In with Kakao
+        </Common.KakaoButton>
+
+        <Common.LoginInput
+          type="text"
           placeholder="아이디"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
         />
-        <Input
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          placeholder="비밀번호"
-        />
-        <SubmitButton type="submit">로그인</SubmitButton>
-      </Form>
 
-      <OAuthWrapper>
-        <NaverButton /*onClick={handleNaverLogin}*/>
-          네이버 로그인
-        </NaverButton>
-        <KakaoButton /*onClick={handleKakaoLogin}*/>
-          카카오 로그인
-        </KakaoButton>
-      </OAuthWrapper>
-    </Container>
+        <Common.LoginInput
+          type="password"
+          placeholder="비밀번호"
+          value={userPw}
+          onChange={(e) => setUserPw(e.target.value)}
+          isError={loginFailed}
+        />
+
+        {loginFailed && (
+          <Common.WarningText>아이디 또는 비밀번호가 올바르지 않습니다.</Common.WarningText>
+        )}
+
+        <Common.LoginButton onClick={handleLogin}>로그인</Common.LoginButton>
+
+        <Common.LoginBottomText>
+          계정이 없으신가요? <a href="/signin">회원가입</a>
+        </Common.LoginBottomText>
+      </Common.LoginBottom>
+    </Common.LoginWrapper>
   );
 }
-
-// ===== styled-components =====
-
-const Container = styled.div`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  background: #f5f5f5;
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-`;
-
-const Form = styled.form`
-  width: 90%;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const Input = styled.input`
-  padding: 1rem;
-  font-size: 1.2rem;
-  border: 2px solid #b54;
-  border-radius: 10px;
-  background: #e0e0e0;
-`;
-
-const SubmitButton = styled.button`
-  padding: 1rem;
-  font-size: 1.2rem;
-  border-radius: 10px;
-  border: none;
-  background: #b54;
-  color: white;
-  cursor: pointer;
-`;
-
-const OAuthWrapper = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-  width: 90%;
-  max-width: 400px;
-`;
-
-const OAuthBase = styled.button`
-  flex: 1;
-  padding: 1rem;
-  font-size: 1.2rem;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-`;
-
-const NaverButton = styled(OAuthBase)`
-  background: #3cba54;
-  color: white;
-`;
-
-const KakaoButton = styled(OAuthBase)`
-  background: #f7e600;
-  color: #381e1f;
-`;

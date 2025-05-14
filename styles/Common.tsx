@@ -896,3 +896,185 @@ export const Grid3 = styled.div`
   margin: 0 auto;
   max-width: 100%;
 `;
+
+export const FormWrapper = styled.div`
+  padding: 24px 16px;
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+`;
+
+export const FormHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 24px;
+`;
+
+export const Label = styled.label`
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 16px;
+  display: block;
+`;
+
+export const InputField = styled.input`
+  width: 100%;
+  background-color: #1a1a1a;
+  border: none;
+  padding: 12px;
+  margin-top: 6px;
+  color: white;
+  font-size: 14px;
+
+  &::placeholder {
+    color: #777;
+  }
+`;
+
+export const PasswordInput = styled.input`
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  flex: 1;
+  font-size: 14px;
+
+  &::placeholder {
+    color: #777;
+  }
+`;
+
+export const EyeButton = styled.button`
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 18px;
+  cursor: pointer;
+`;
+
+export const SubmitButton = styled.button`
+  margin-top: 40px;
+  width: 100%;
+  padding: 14px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+`;
+
+export const PasswordInputRow = styled.div<{ isError?: boolean }>`
+  display: flex;
+  align-items: center;
+  background-color: #1a1a1a;
+  padding: 12px;
+  margin-top: 6px;
+  border: ${({ isError }) => (isError ? '1px solid #7fff00' : 'none')};  /* 연두색 */
+`;
+
+export const WarningText = styled.div`
+  color: #7fff00;
+  font-size: 12px;
+  text-align: right;
+  margin-top: 4px;
+`;
+
+export const LoginWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  /* ✅ 상하 분리 */
+  align-items: center;
+  min-height: 100vh;
+  padding: 48px 24px;
+  background-color: black;
+  color: white;
+`;
+
+
+export const Logo = styled.img`
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+`;
+
+export const LogoText = styled.h1`
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 40px;
+`;
+
+export const KakaoButton = styled.button`
+  background-color: #ffeb00;
+  color: black;
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+`;
+
+export const LoginInput = styled.input<{ isError?: boolean }>`
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  background-color: #1a1a1a;
+  color: white;
+  border: ${({ isError }) => (isError ? '1px solid #7fff00' : 'none')};
+  font-size: 14px;
+
+  &::placeholder {
+    color: #777;
+  }
+`;
+
+export const LoginButton = styled.button`
+  width: 100%;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  padding: 12px;
+  font-size: 15px;
+  border: none;
+  margin-top: 12px;
+  cursor: pointer;
+`;
+
+export const LoginBottomText = styled.div`
+  font-size: 12px;
+  color: #888;
+  margin-top: 16px;
+
+  a {
+    color: white;
+    margin-left: 6px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+
+export const LoginTop = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const LoginBottom = styled.div`
+  width: 100%;
+  padding: 0 24px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
