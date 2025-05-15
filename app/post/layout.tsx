@@ -76,7 +76,7 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
       <Common.PostBottomBar variant={isLong ? 'light' : 'dark'}>
         <Common.ProfileTag>
           <Common.HandleBadge
-            onClick={() => router.push(`/publisher/${publisherId}`)}
+            onClick={() => router.push(`/post/${publisherId}`)}
             style={{ cursor: 'pointer' }}
           >
             @{publisherId}
