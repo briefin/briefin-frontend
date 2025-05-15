@@ -8,14 +8,14 @@ import { AddBtn, SettingBtn } from '@/src/assets/icons';
 const mockPublishers = [
   {
     id: '@daily.magazine',
-    avatar: '/jordy.png',
+    avatar: '/girl.png',
     followers: 100,
     following: 1356,
     posts: 23,
   },
   {
     id: '@artnews',
-    avatar: '/jordy.png',
+    avatar: '/girl.png',
     followers: 100,
     following: 1356,
     posts: 6,

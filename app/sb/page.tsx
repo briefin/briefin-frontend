@@ -9,11 +9,11 @@ import { UploadBtn, BackArrowBtn, AddBtn} from '@/src/assets/icons';
 
 const mockData_sb = [
     {
-      img: '/jordy.png',
+      img: '/girl.png',
       title: 'y2k',
     },
     {
-      img: '/jordy.png',
+      img: '/girl.png',
       title: '느좋레시피',
     },
 ];

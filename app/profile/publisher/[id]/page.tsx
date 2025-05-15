@@ -16,7 +16,7 @@ const mockData = [
 const mockPublishers = [
   {
     id: '@daily.magazine',
-    avatar: '/jordy.png',
+    avatar: '/girl.png',
     description: '느좋소식을 전하는 아트뉴스입니당',
     followers: 100,
     following: 1356,

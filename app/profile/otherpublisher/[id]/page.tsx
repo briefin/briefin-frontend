@@ -2,7 +2,7 @@
 
 import React from 'react';
 import * as Common from '@/styles/Common';
-import BookmarkMenu from '@/src/components/BookmarkMenu';
+import { SettingBtn ,AddBtn} from '@/src/assets/icons';
 
 const mockData = [
   { img: '/image_1.png', title: '빈티지 단추 모음', author: '@mag.daily' },
@@ -16,7 +16,7 @@ const mockData = [
 const mockPublishers = [
   {
     id: '@daily.magazine',
-    avatar: '/jordy.png',
+    avatar: '/girl.png',
     description: '느좋소식을 전하는 아트뉴스입니당',
     followers: 100,
     following: 1356,
@@ -26,6 +26,7 @@ const mockPublishers = [
 
 export default function PublisherDetailPage() {
   const publisher = mockPublishers[0];
+
   return (
     <Common.PublisherPageWrapper>
       {/* Publisher Header */}
@@ -33,11 +34,9 @@ export default function PublisherDetailPage() {
         <Common.PublisherInfo>
           <Common.PublisherAvatar src={publisher.avatar} alt={publisher.id} />
           <Common.PublisherTextGroup>
-            {/* 1) 아이디 */}
-            <Common.PublisherId>{publisher.id}</Common.PublisherId>
 
             {/* 2) 설명 */}
-            <Common.MyDescription>
+            <Common.MyDescription style={{marginTop : '40px', marginLeft : '10px'}}>
               {publisher.description}
             </Common.MyDescription>
 
@@ -50,7 +49,6 @@ export default function PublisherDetailPage() {
             </Common.PublisherStatsRow>
           </Common.PublisherTextGroup>
         </Common.PublisherInfo>
-
       </Common.PublisherItem>
 
       {/* 게시물 리스트 */}
