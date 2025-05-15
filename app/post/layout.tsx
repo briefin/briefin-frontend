@@ -2,45 +2,49 @@
 
 import React, { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { FiBookmark } from 'react-icons/fi';
 import * as Common from '@/styles/Common';
-import { BackArrowBtn, WUploadBtn, LikeBtn ,LikedBtn} from '@/src/assets/icons';
+import { BackArrowBtn, WUploadBtn, LikeBtn, LikedBtn } from '@/src/assets/icons';
 
 export default function PostLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() ?? '';
   const router = useRouter();
 
-  // 현재 경로에 따라 short/long 판별
   const isLong = pathname.includes('/post/long');
 
   const [isLiked, setIsLiked] = useState(false);
-  const toggleLike = () => setIsLiked(l => !l);
+  const toggleLike = () => setIsLiked((l) => !l);
 
-  // 이동할 상대 페이지와 라벨 설정
   const togglePath = isLong ? '/post/short' : '/post/long';
   const toggleLabel = isLong ? '짧은글읽기' : '긴글읽기';
 
   const [isBookmarkOpen, setIsBookmarkOpen] = useState(false);
   const [isScrapToastVisible, setIsScrapToastVisible] = useState(false);
+  const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
 
-  const handleScrap = (folder: string) => {
+  const handleScrap = (folder: string | null) => {
+    setSelectedFolder(folder);
     setIsBookmarkOpen(false);
-    setIsScrapToastVisible(true);
-    setTimeout(() => setIsScrapToastVisible(false), 3000);
+
+    if (folder) {
+      setIsScrapToastVisible(true);
+      setTimeout(() => setIsScrapToastVisible(false), 3000);
+    }
   };
+
+  const publisherId = 'mag.daily';
 
   return (
     <>
       {/* 상단 헤더 */}
-      <Common.PostHeaderContainer transparent={isLong}>
+      <Common.PostHeaderContainer $transparent={isLong}>
         <Common.BackButton onClick={() => router.back()}>
           <BackArrowBtn />
         </Common.BackButton>
-        <Common.HeaderTitle >빈티지 단추 모음</Common.HeaderTitle>
+        <Common.HeaderTitle>빈티지 단추 모음</Common.HeaderTitle>
       </Common.PostHeaderContainer>
 
-      {/* 태그 행 */}
-      <Common.TagRow style={{marginTop : '60px'}}>
+      {/* 태그 */}
+      <Common.TagRow style={{ marginTop: '60px' }}>
         <Common.TagBadge>패션</Common.TagBadge>
         <Common.TagBadge>트렌드</Common.TagBadge>
       </Common.TagRow>
@@ -53,7 +57,7 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
       {/* 북마크 선택창 */}
       {isBookmarkOpen && (
         <Common.BookmarkOverlay onClick={() => setIsBookmarkOpen(false)}>
-          <Common.BookmarkSelectBox onClick={e => e.stopPropagation()}>
+          <Common.BookmarkSelectBox onClick={(e) => e.stopPropagation()}>
             <Common.BookmarkItem onClick={() => handleScrap('y2k')}>y2k</Common.BookmarkItem>
             <Common.BookmarkItem onClick={() => handleScrap('느좋레시피')}>느좋레시피</Common.BookmarkItem>
           </Common.BookmarkSelectBox>
@@ -61,39 +65,58 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
       )}
 
       {/* 스크랩 완료 토스트 */}
-      {isScrapToastVisible && (
-        <Common.ScrapToast>
-          <Common.ScrapImage src="/briefin_logo.png" alt="스크랩 완료" />
-          스크랩 완료!
-        </Common.ScrapToast>
-      )}
+        {isScrapToastVisible && (
+          <Common.ScrapToast>
+            <Common.ScrapImage src="/briefin_logo.png" alt="스크랩 완료" />
+           스크랩 완료!
+         </Common.ScrapToast>
+        )}
 
       {/* 하단 바 */}
       <Common.PostBottomBar variant={isLong ? 'light' : 'dark'}>
         <Common.ProfileTag>
-          {/* 퍼블리셔 아이디(항상 고정) */}
-          <Common.HandleBadge>@mag.daily</Common.HandleBadge>
-
-          {/* 짧/긴 글 읽기 배지: 클릭 시 togglePath로 네비게이트 */}
+          <Common.HandleBadge
+            onClick={() => router.push(`/publisher/${publisherId}`)}
+            style={{ cursor: 'pointer' }}
+          >
+            @{publisherId}
+          </Common.HandleBadge>
           <Common.HandleBadge
             onClick={() => router.push(togglePath)}
             style={{ cursor: 'pointer' }}
           >
             {toggleLabel}
           </Common.HandleBadge>
-        </Common.ProfileTag>       
+        </Common.ProfileTag>
+
         <Common.ActionIcons onClick={toggleLike}>
           {isLiked ? (
             <LikedBtn width={24} height={24} />
-           ) : (
-            <LikeBtn  width={24} height={24} />
+          ) : (
+            <LikeBtn width={24} height={24} />
           )}
         </Common.ActionIcons>
+
+        {/* ✅ 북마크 아이콘 이미지 조건부 렌더링 */}
         <Common.ActionIcons>
-          <FiBookmark onClick={() => setIsBookmarkOpen(true)} />
+          <img
+            src={selectedFolder ? '/bookmark_on.png' : '/bookmark_off.png'}
+            alt="bookmark"
+            width={24}
+            height={24}
+            style={{ cursor: 'pointer' }}
+            onClick= {() => {
+              if (selectedFolder) {
+                handleScrap(null); // ✅ 이미 북마크 → 해제
+              } else {
+                setIsBookmarkOpen(true); // ✅ 북마크 안됨 → 선택창 열기
+              }
+            }}
+          />
         </Common.ActionIcons>
+
         <Common.ActionIcons>
-          <WUploadBtn/>
+          <WUploadBtn />
         </Common.ActionIcons>
       </Common.PostBottomBar>
     </>

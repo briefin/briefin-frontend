@@ -1,13 +1,14 @@
 'use client';
 
 import SearchBar from '@/src/components/SearchBar';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import { useRouter, } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
 import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft  } from 'react-icons/fi';
 import * as Common from '@/styles/Common';
 import { BackArrowBtn, SearchFollowBtn, FollowedIcon} from '@/src/assets/icons';
 import CategoryBar from '@/src/components/CategoryBar';
 import BookmarkMenu from '@/src/components/BookmarkMenu';
+
 
 
 
@@ -98,6 +99,9 @@ export default function SearchPage() {
     );
   };
 
+  useEffect(() => {
+    console.log('📐 뷰포트 스케일:', window.visualViewport?.scale);
+  }, []);
 
   return (
     <>

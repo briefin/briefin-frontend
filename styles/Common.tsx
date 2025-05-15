@@ -41,12 +41,13 @@ export const AddIconButton = styled.button`
 
 export const Wrapper = styled.main`
   min-height: 100vh;
+  max-width: 100vw;
   background-color: black;
   color: white;
   padding: 0;
   margin-top: 20px;
   width : 100%
-  margin-top: -5px;
+  height: 100%
 
 `;
 
@@ -367,7 +368,7 @@ export const SuggestedSearchTitle = styled.div`
 `;
 
 export const SuggestedSearchHandle = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   color: #848484;
   margin-bottom: 2px;
   font-weight: 400;
@@ -540,7 +541,7 @@ export const BookmarkWrapper = styled.div`
 `;
 
 export const BookmarkLabel = styled.div`
-  font-size: 12px;
+  font-size: 13px;
   color: white;
   font-weight: ;
 `;
@@ -615,6 +616,7 @@ export const HandleBadge = styled.div`
 // 아이콘 그룹
 export const ActionIcons = styled.div`
   display: flex;
+  position: relative;
   align-items: center;
   gap: 16px;
   font-size: 20px;
@@ -737,22 +739,22 @@ export const BookmarkOverlay = styled.div`
 `;
 
 export const BookmarkSelectBox = styled.div`
-  width: 100%;
+  width: 90%;
   max-width: 480px;
   background-color: #3B3B3B;
   padding: 10px;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px;
   color: white;
+  padding-bottom : 5px;
   z-index: 1000;
-  border-radius: 2px;
   /* ✅ 하단바 높이만큼 띄우기 */
-  margin-bottom: 64px;
+  margin-bottom: 90px;
 `;
 
 export const BookmarkItem = styled.div`
   padding: 10px 12px;
   border-radius: 8px;
-  background-color: #444;
+  background-color: #3B3B3B;
   margin-bottom: 8px;
   font-size: 14px;
 `;
@@ -764,10 +766,10 @@ export const ScrapToast = styled.div`
   transform: translate(-50%, -50%);
   background-color: #232323;
   color: white;
-  padding: 44px 32px;
+  padding: 60px 32px;
   font-size: 20px;
   font-weight: 600;
-  z-index: 1001;
+  z-index: 1002;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1243,7 +1245,7 @@ export const FolderItem = styled.div<{selected?: boolean}>`
 `;
 
 
-export const PostHeaderContainer = styled.div<{ transparent?: boolean }>`
+export const PostHeaderContainer = styled.div<{ $transparent?: boolean }>`
   display: flex;
   align-items: center;
   padding: 25px 12px;
@@ -1254,14 +1256,15 @@ export const PostHeaderContainer = styled.div<{ transparent?: boolean }>`
   top: 0;
   left: 0;
   width: 100%;
-  z-index: ${({ transparent }) => (transparent ? 10 : 'auto')};
+  z-index: ${({ $transparent }) => ($transparent ? 10 : 'auto')};
 `;
 
 export const PostBottomBar = styled.div<{ variant: 'dark' | 'light'}>`
   display: flex;
   align-items: center;
+  position: relative;
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: 12px 14px;
   border-radius: 20px;
   /* transparent prop 처리 */
   background-color: ${({ variant }) =>
@@ -1280,7 +1283,7 @@ export const PostBottomBar = styled.div<{ variant: 'dark' | 'light'}>`
   width: 90%;
   margin-bottom: 20px;
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 20px;
 `;
 
 /* ───────────────────────────────────────── Upload ───────────────────────────────────────── */
