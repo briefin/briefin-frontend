@@ -65,7 +65,7 @@ export default function BookmarkMenu({
 
       {openIdx !== null && (
         <>
-          <Common.Overlay />
+          <Common.BookmarkOverlay />
           <Common.FolderMenu>
             {folders.map((f, i) => (
               <Common.FolderItem

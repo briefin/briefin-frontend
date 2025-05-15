@@ -94,6 +94,7 @@ export const Overlay = styled.div`
   padding: 0.5rem;
 `;
 
+
 export const Title = styled.div`
   font-size: 18px;
   font-weight: 600;
@@ -354,7 +355,7 @@ export const SuggestedSearchImage = styled.img`
 export const SuggestedSearchInfo = styled.div`
   text-align: center;
   margin-top: 12px;        // 🔥 이미지와 텍스트 사이
-  margin-bottom: 12px;     // 🔥 텍스트와 버튼 사이
+  margin-bottom: 11px;     // 🔥 텍스트와 버튼 사이
   cursor: pointer;
 `;
 
@@ -541,7 +542,7 @@ export const BookmarkWrapper = styled.div`
 export const BookmarkLabel = styled.div`
   font-size: 12px;
   color: white;
-  font-weight: bold;
+  font-weight: ;
 `;
 
 export const HeaderContainer = styled.div`
@@ -729,7 +730,7 @@ export const BookmarkOverlay = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5); /* ✅ 반투명 검정 배경 */
-  z-index: 999; /* ✅ 하단바 위 */
+  z-index: 1000; /* ✅ 하단바 위 */
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -743,7 +744,7 @@ export const BookmarkSelectBox = styled.div`
   border-radius: 10px 10px 0 0;
   color: white;
   z-index: 1000;
-
+  border-radius: 2px;
   /* ✅ 하단바 높이만큼 띄우기 */
   margin-bottom: 64px;
 `;
@@ -1223,21 +1224,21 @@ export const MyDescription = styled.p`
 
 export const FolderMenu = styled.div`
   position: absolute;
-  top: 28px;
+  top: 20px;
   right: 0;
-  background: rgba(0,0,0,0.9);
-  border-radius: 4px;
-  padding: 4px 0;
-  z-index: 10;
+  background: #3B3B3B;
+  width: 170px;
+  border-radius: 10px;
+  z-index: 1001;
 `;
 
 export const FolderItem = styled.div<{selected?: boolean}>`
   padding: 6px 12px;
   color: ${({ selected }) => (selected ? '#86FF0D' : '#fff')};
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
   &:hover {
-    background: rgba(255,255,255,0.1);
+    background: #3B3B3B;
   }
 `;
 

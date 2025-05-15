@@ -7,6 +7,7 @@ import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft 
 import * as Common from '@/styles/Common';
 import { BackArrowBtn, SearchFollowBtn, FollowedIcon} from '@/src/assets/icons';
 import CategoryBar from '@/src/components/CategoryBar';
+import BookmarkMenu from '@/src/components/BookmarkMenu';
 
 
 
@@ -105,19 +106,9 @@ export default function SearchPage() {
           {mockData.map((item, idx) => (
             <Common.Card key={idx}>
               <Common.Image src={item.img} alt={item.title} />
-              <Common.BookmarkWrapper>
-                {mockBookmarks[idx] && (
-                  <Common.BookmarkLabel>y2k</Common.BookmarkLabel>
-                )}
-                <Common.BookmarkButton onClick={() => toggleMockBookmarks(idx)}>
-                  <img
-                    src={mockBookmarks[idx] ? '/bookmark_on.png' : '/bookmark_off.png'}
-                    alt="bookmark"
-                    width={20}
-                    height={20}
-                  />
-                </Common.BookmarkButton>
-              </Common.BookmarkWrapper>
+              <BookmarkMenu
+                folders={['y2k', '느좋레시피', '취향저격']} 
+              />
               <Common.Overlay>
                 <Common.Title>{item.title}</Common.Title>
                 <Common.Author>{item.author}</Common.Author>
@@ -165,19 +156,9 @@ export default function SearchPage() {
           {mockData_2.map((item, idx) => (
             <Common.Card key={idx}>
               <Common.Image src={item.img} alt={item.title} />
-              <Common.BookmarkWrapper>
-                {mockBookmarks_2[idx] && (
-                  <Common.BookmarkLabel>y2k</Common.BookmarkLabel>
-                )}
-                <Common.BookmarkButton onClick={() => toggleMockBookmarks_2(idx)}>
-                  <img
-                    src={mockBookmarks_2[idx] ? '/bookmark_on.png' : '/bookmark_off.png'}
-                    alt="bookmark"
-                    width={20}
-                    height={20}
-                  />
-                </Common.BookmarkButton>
-              </Common.BookmarkWrapper>
+              <BookmarkMenu
+                 folders={['y2k', '느좋레시피', '취향저격']}   
+               />
               <Common.Overlay>
                 <Common.Title>{item.title}</Common.Title>
                 <Common.Author>{item.author}</Common.Author>
@@ -185,7 +166,6 @@ export default function SearchPage() {
             </Common.Card>
           ))}
         </Common.Grid>
-
       </Common.Wrapper>
 
     </>

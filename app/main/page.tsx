@@ -7,6 +7,7 @@ import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft,
 import Image from 'next/image'; 
 import { BackArrowBtn, } from '@/src/assets/icons';
 import CategoryBar from '@/src/components/CategoryBar';
+import BookmarkMenu from '@/src/components/BookmarkMenu';
 
 
 const mockData = [
@@ -77,6 +78,7 @@ const suggestedData = [
   // 필요 시 더 추가 가능
 ];
 
+
 export default function Page() {
 
   const router = useRouter(); // ✅ 라우터 훅 사용
@@ -115,19 +117,9 @@ export default function Page() {
           {mockData.map((item, idx) => (
             <Common.Card key={idx}>
               <Common.Image src={item.img} alt={item.title} />
-              <Common.BookmarkWrapper>
-                {mockBookmarks[idx] && (
-                  <Common.BookmarkLabel>y2k</Common.BookmarkLabel>
-                )}
-                <Common.BookmarkButton onClick={() => toggleMockBookmarks(idx)}>
-                  <img
-                    src={mockBookmarks[idx] ? '/bookmark_on.png' : '/bookmark_off.png'}
-                    alt="bookmark"
-                    width={20}
-                    height={20}
-                  />
-                </Common.BookmarkButton>
-              </Common.BookmarkWrapper>
+              <BookmarkMenu
+                 folders={['y2k', '느좋레시피', '취향저격']}
+                />
               <Common.Overlay>
                 <Common.Title>{item.title}</Common.Title>
                 <Common.Author>{item.author}</Common.Author>
@@ -151,19 +143,9 @@ export default function Page() {
                   </Common.SuggestedOverlay>
 
           {/* 북마크 */}
-                  <Common.BookmarkWrapper>
-                      {suggestedDataBookmarks[idx] && (
-                       <Common.BookmarkLabel>y2k</Common.BookmarkLabel>
-                  )}
-                    <Common.BookmarkButton onClick={() => toggleSuggestedDataBookmarks(idx)}>
-                      <img
-                        src={suggestedDataBookmarks[idx] ? '/bookmark_on.png' : '/bookmark_off.png'}
-                        alt="bookmark"
-                        width={20}
-                        height={20}
-                      />
-                    </Common.BookmarkButton>
-                  </Common.BookmarkWrapper>
+                  <BookmarkMenu
+                      folders={['y2k', '느좋레시피', '취향저격']}   
+                  />
                 </Common.SuggestedCard>
               ))}
             </Common.HorizontalScroll>
