@@ -141,7 +141,6 @@ export default function Page() {
                     <Common.Title>{item.title}</Common.Title>
                     <Common.Author>{item.author}</Common.Author>
                   </Common.SuggestedOverlay>
-
           {/* 북마크 */}
                   <BookmarkMenu
                       folders={['y2k', '느좋레시피', '취향저격']}   

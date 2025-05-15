@@ -69,7 +69,7 @@ export const MyCard = styled.div`
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1.3;
-  overflow: hidden;
+  overflow: visible;
 `;
 
 export const LikeCard = styled.div`
@@ -1151,7 +1151,9 @@ export const PublisherItem = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 16px 0;
+  padding: 16px;
+  margin-left: -10px;
+  width: 100%;
 `;
 
 export const PublisherInfo = styled.div`
@@ -1159,6 +1161,7 @@ export const PublisherInfo = styled.div`
   align-items: flex-start;
   gap: 12px;
   cursor: pointer;
+  width: 100%;
 `;
 
 export const PublisherAvatar = styled.img`
@@ -1232,6 +1235,7 @@ export const FolderMenu = styled.div`
   width: 170px;
   border-radius: 10px;
   z-index: 1001;
+  flex-direction: row; 
 `;
 
 export const FolderItem = styled.div<{selected?: boolean}>`
@@ -1372,4 +1376,17 @@ export const UploadRow = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 16px 0;
+`;
+
+export const FollowButton = styled.button<{ active?: boolean }>`
+  width: 95%;
+  margin-left: 10px;
+  margin-top: 5px;
+  padding: 8px;
+  background-color: ${({ active }) => (active ? '#232323' : '#3B3B3B')};
+  color: white;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 `;

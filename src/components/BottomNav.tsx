@@ -20,9 +20,14 @@ export default function BottomNav() {
   return (
     <S.BottomNav>
       {tabs.map(({ path, Gray, White }) => {
-        // startsWith 로 서브경로도 모두 active 처리
-        const isActive = pathname.startsWith(path);
-        const Icon     = isActive ? White : Gray;
+        // User 탭(path === '/profile/user')일 때에만 otherpublisher 도 포함
+        const isUserTab = path === '/profile/user';
+        const isActive = isUserTab
+          ? (pathname.startsWith('/profile/user') ||
+             pathname.startsWith('/profile/otherpublisher/'))
+          : pathname.startsWith(path);
+
+        const Icon = isActive ? White : Gray;
         return (
           <S.NavIcon key={path} onClick={() => router.push(path)}>
             <Icon />

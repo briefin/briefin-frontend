@@ -6,6 +6,24 @@ import { FiPlus, FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChev
 import * as Common from '@/styles/Common';
 import { UploadBtn, BackArrowBtn, AddBtn} from '@/src/assets/icons';
 
+const bookmarkedPhotos = [
+  { id: 'a', url: '/girl.png' },
+  { id: 'b', url: '/girl1.png' },
+  { id: 'c', url: '/girl2.png' },
+  { id: 'd', url: '/girl3.png' },
+];
+
+function sampleThree<T>(arr: T[]): T[] {
+  const copy = [...arr];
+  const result: T[] = [];
+  for (let i = 0; i < 3 && copy.length; i++) {
+    const idx = Math.floor(Math.random() * copy.length);
+    result.push(copy.splice(idx, 1)[0]);
+  }
+  return result;
+}
+
+
 
 const mockData_sb = [
     {

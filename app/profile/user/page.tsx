@@ -69,7 +69,7 @@ export default function UserProfilePage() {
   };
 
   return (
-    <Common.ProfilePageWrapper>
+    <Common.ProfilePageWrapper style={{marginLeft : '-5px'}}>
       {/* ✅ 프로필 정보 */}
       <Common.ProfileInfoWrapper>
         <Common.ProfileDetails>
