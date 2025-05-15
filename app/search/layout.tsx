@@ -17,7 +17,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
       {/* 헤더: 항상 뒤로가기 버튼만 보여 줌 */}
       <Common.Centered>
         <Common.Header>
-          <Common.IconButton onClick={() => router.back()}>
+          <Common.IconButton onClick={() => router.back()} style={{marginTop : '10px'}}>
             <BackArrowBtn />
           </Common.IconButton>
         </Common.Header>
@@ -25,18 +25,20 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
 
       {/* 검색창 + 카테고리 */}
       <Common.ContentWrapper>
-        <Common.Centered style={{ margin: '9px 0' }}>
+        <Common.Centered style={{marginBottom :'10px'}}>
           <SearchBar />
         </Common.Centered>
         {!isWhile && (
-          <Common.Centered>
+          <Common.Centered style={{marginLeft : '20px',}} >
             <CategoryBar />
           </Common.Centered>
         )}
       </Common.ContentWrapper>
 
       {/* 페이지별 고유 콘텐츠 */}
-      {children}
+      <Common.Wrapper>
+        {children}
+      </Common.Wrapper>
     </>
   );
 }

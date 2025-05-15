@@ -1,48 +1,84 @@
 'use client';
 
 import * as Common from '@/styles/Common';
-import { FiChevronLeft, FiPlus } from 'react-icons/fi';
 import { usePathname, useRouter, useParams } from 'next/navigation';
 import { BackArrowBtn, AddBtn } from '@/src/assets/icons';
 
 export default function ProfileLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() ?? '';
   const router   = useRouter();
-  const params   = useParams() as { id: string };
-  const id       = params.id; // /profile/publisher/[id]
+  const { id }   = useParams() as { id?: string };
 
-  const isUser      = pathname.includes('/profile/user');
-  const isPublisher = pathname.includes('/profile/publisher');
+  const isUserPage   = pathname === '/profile/user';
+  const isPubRoot    = pathname === '/profile/publisher';
+  const isPubDet     = !!id && pathname === `/profile/publisher/${id}`;
+  const isSignup     = pathname.endsWith('/signup');
 
-  // 눌렀을 때 동적 id가 없으면 이동하지 않게 안전장치
+  // Add 버튼은 publisher root 또는 detail에서만
+  const showAddButton = (isPubRoot || isPubDet) && !isSignup;
   const handleAdd = () => {
-    if (id) {
-      router.push(`/profile/publisher/${id}/signup`);
+    if (id) router.push(`/profile/publisher/${id}/signup`);
+  };
+
+  // 탭 렌더링 순서
+  // 1) User 페이지: User → Publisher  
+  // 2) Publisher 루트/Detail: Publisher → User  
+  // 3) Signup: Publisher 만
+  const renderTabs = () => {
+    // 3) Signup 에서는 Publisher 탭만
+    if (isSignup) {
+      return (
+        <Common.Tab active onClick={() => router.push('/profile/publisher')}>
+          Publisher
+        </Common.Tab>
+      );
     }
+
+    // 1) User 페이지
+    if (isUserPage) {
+      return (
+        <>
+          <Common.Tab active onClick={() => router.push('/profile/user')}>
+            User
+          </Common.Tab>
+          <Common.Tab onClick={() => router.push('/profile/publisher')}>
+            Publisher
+          </Common.Tab>
+        </>
+      );
+    }
+
+    // 2) Publisher 루트 또는 Detail
+    return (
+      <>
+        <Common.Tab active onClick={() => router.push('/profile/publisher')}>
+          Publisher
+        </Common.Tab>
+        <Common.Tab onClick={() => router.push('/profile/user')}>
+          User
+        </Common.Tab>
+      </>
+    );
   };
 
   return (
     <>
-      <Common.Header style={{ justifyContent: 'space-between', alignItems: 'center' , marginTop: '10px'}}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <Common.IconButton onClick={() => router.back()}>
+      <Common.Header style={{ justifyContent: 'space-between', alignItems: 'center', marginTop : '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <Common.IconButton onClick={() => router.back()} style={{margin : '0 5px'}}>
             <BackArrowBtn />
           </Common.IconButton>
           <Common.TabWrapper>
-            <Common.Tab active={isUser} onClick={() => router.push('/profile/user')}>
-              User
-            </Common.Tab>
-            <Common.Tab active={isPublisher} onClick={() => router.push('/profile/publisher')}>
-              Publisher
-            </Common.Tab>
+            {renderTabs()}
           </Common.TabWrapper>
         </div>
-        {/* Add 버튼 클릭 시 실제 ID가 들어간 경로로 이동 */}
-        <Common.AddIconButton onClick={handleAdd}>
-          <AddBtn />
-        </Common.AddIconButton>
-      </Common.Header>
 
+        {showAddButton && (
+          <Common.IconButton onClick={handleAdd} style={{margin : '0 5px'}}>
+            <AddBtn />
+          </Common.IconButton>
+        )}
+      </Common.Header>
       {children}
     </>
   );

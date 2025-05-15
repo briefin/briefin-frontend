@@ -161,9 +161,9 @@ export const BottomNav = styled.nav`
   justify-content: space-around;
   align-items: center;
   padding: 12px 0;
-  z-index: 999;
   width: 100%;
   max-width: 480px;
+  z-index: 100;
 `;
 
 export const NavIcon = styled.button`

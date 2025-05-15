@@ -39,7 +39,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         {showBottomNav && (
-          <Common.Centered>
             <Common.BottomNav>
               {tabs.map(({ key, path, Gray, White }) => {
                 // 현재 URL이 path와 정확히 일치하거나 서브 경로면 활성화
@@ -59,7 +58,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 );
               })}
             </Common.BottomNav>
-          </Common.Centered>
         )}
       </body>
     </html>

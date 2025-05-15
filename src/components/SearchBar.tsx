@@ -45,7 +45,7 @@ const SearchInput = styled.input`
 
   &::placeholder {
     color: #3B3B3B;               /* placeholder 색 */
-    font-size: 14px;           /* placeholder 크기 */
+    font-size: 16px;           /* placeholder 크기 */
     font-weight: 400;
   }
 `;

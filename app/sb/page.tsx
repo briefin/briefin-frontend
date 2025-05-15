@@ -27,8 +27,8 @@ export default function SearchPage() {
 
     <Common.Centered>
         <Common.Header>
-            <Common.IconButton><BackArrowBtn /></Common.IconButton>  
-            <Common.IconButton><AddBtn /></Common.IconButton>  
+            <Common.IconButton style={{marginTop : '10px', marginBottom : '10px'}}><BackArrowBtn /></Common.IconButton>  
+            <Common.IconButton style={{marginTop : '10px'}}><AddBtn /></Common.IconButton>  
         </Common.Header>      
     </Common.Centered>
 

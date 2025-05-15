@@ -100,7 +100,7 @@ export default function Page() {
     <>
       <Common.Centered>
         <Common.Header>
-          <Common.IconButton><BackArrowBtn /></Common.IconButton>  
+          <Common.IconButton style={{marginTop : '10px', marginBottom : '10px'}}><BackArrowBtn /></Common.IconButton>  
         </Common.Header>      
       </Common.Centered>
 
