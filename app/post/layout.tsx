@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import * as Common from '@/styles/Common';
 import { BackArrowBtn, WUploadBtn, LikeBtn, LikedBtn } from '@/src/assets/icons';
+import CopyPathButton from '@/src/components/CopypathButton';
 
 export default function PostLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() ?? '';
@@ -115,9 +116,7 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
           />
         </Common.ActionIcons>
 
-        <Common.ActionIcons>
-          <WUploadBtn />
-        </Common.ActionIcons>
+        <CopyPathButton/>
       </Common.PostBottomBar>
     </>
   );

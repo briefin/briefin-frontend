@@ -12,7 +12,7 @@ interface BookmarkMenuProps {
 export default function BookmarkMenu({
   folders,
   initialFolder = null,
-  onChange,
+  onChange, 
 }: BookmarkMenuProps) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const [selectedFolder, setSelectedFolder] = useState<string | null>(initialFolder);

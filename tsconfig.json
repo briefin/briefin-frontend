@@ -31,7 +31,7 @@
     "**/*.tsx",
     "**/*.js",                // ✅ JS 파일도 포함
     "**/*.jsx",
-    "src/custom.d.ts", "app/profile/publisher/[id]/signup",
+    "src/custom.d.ts", "app/profile/publisher/signup",
   ],
   "exclude": ["node_modules"]
 }

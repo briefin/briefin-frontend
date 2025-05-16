@@ -399,6 +399,7 @@ export const SbCard = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
+  padding-left: 5px;
 `;
 
 export const SbImage = styled.img`

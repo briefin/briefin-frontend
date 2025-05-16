@@ -2,9 +2,9 @@
 
 import SearchBar from '@/src/components/SearchBar';
 import { useRouter } from 'next/navigation';
-import { FiPlus, FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft, FiShare } from 'react-icons/fi';
 import * as Common from '@/styles/Common';
 import { UploadBtn, BackArrowBtn, AddBtn} from '@/src/assets/icons';
+import CopyPathButton from '@/src/components/CopypathButton';
 
 const bookmarkedPhotos = [
   { id: 'a', url: '/girl.png' },
@@ -24,16 +24,15 @@ function sampleThree<T>(arr: T[]): T[] {
 }
 
 
-
 const mockData_sb = [
-    {
-      img: '/girl.png',
-      title: 'y2k',
-    },
-    {
-      img: '/girl.png',
-      title: '느좋레시피',
-    },
+  {
+    title: 'y2k',
+    images: ['/girl.png', '/girl1.png', '/girl2.png', '/girl3.png'],
+  },
+  {
+    title: '느좋레시피',
+    images: ['/girl1.png', '/girl2.png', '/girl3.png', '/girl.png'],
+  },
 ];
 
 export default function SearchPage() {
@@ -58,15 +57,27 @@ export default function SearchPage() {
     <Common.Centered>
       <Common.Wrapper>
         <Common.Grid>
-                {mockData_sb.map((item, idx) => (
-                <Common.SbCard key={idx}>
-                    <Common.SbImage src={item.img} alt={item.title} />
-                    <Common.SbTextWrapper>
-                    <Common.SbTitle>{item.title}</Common.SbTitle>
-                    <Common.IconButton><UploadBtn/></Common.IconButton>
-                    </Common.SbTextWrapper>
-                </Common.SbCard>
+          {mockData_sb.map((item, idx) => (
+            <Common.SbCard key={idx} onClick={() => router.push(`/sb/${encodeURIComponent(item.title)}`)}>
+              {/* 이미지 2x2 그리드 */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', width: '100%', height: '100%' }}>
+                {item.images.map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt={`preview-${i}`}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
                 ))}
+              </div>
+
+              {/* 제목 및 아이콘 */}
+              <Common.SbTextWrapper>
+                <Common.SbTitle>{item.title}</Common.SbTitle>
+                <CopyPathButton />
+              </Common.SbTextWrapper>
+            </Common.SbCard>
+          ))}
         </Common.Grid>
       </Common.Wrapper>
     </Common.Centered>

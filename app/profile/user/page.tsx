@@ -69,7 +69,7 @@ export default function UserProfilePage() {
   };
 
   return (
-    <Common.ProfilePageWrapper style={{marginLeft : '-5px'}}>
+    <Common.ProfilePageWrapper style={{marginLeft : '-5px',}}>
       {/* ✅ 프로필 정보 */}
       <Common.ProfileInfoWrapper>
         <Common.ProfileDetails>
@@ -89,6 +89,8 @@ export default function UserProfilePage() {
         </Common.SettingIconButton>
       </Common.ProfileInfoWrapper>
 
+      <Common.CategoryTitle>유저 키워드</Common.CategoryTitle>
+
       {/* ✅ 선호 카테고리리 섹션 */} 
       <Common.CategorySection>
         <Common.CategoryTitle>선호 카테고리</Common.CategoryTitle>
@@ -100,6 +102,7 @@ export default function UserProfilePage() {
           <Common.WordItem x={140} y={60} size={16} bold>시네마토크</Common.WordItem>
         </Common.WordCloud>
       </Common.CategorySection>
+
 
       {/* ✅ 선호 퍼블리셔 섹션 */}
       <Common.Centered>
