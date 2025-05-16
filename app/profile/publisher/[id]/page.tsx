@@ -3,6 +3,7 @@
 import React from 'react';
 import * as Common from '@/styles/Common';
 import { SettingBtn ,AddBtn} from '@/src/assets/icons';
+import { useRouter } from 'next/navigation';
 
 const mockData = [
   { img: '/image_1.png', title: '빈티지 단추 모음', author: '@mag.daily' },
@@ -26,6 +27,7 @@ const mockPublishers = [
 
 export default function PublisherDetailPage() {
   const publisher = mockPublishers[0];
+  const router = useRouter();
 
   return (
     <Common.PublisherPageWrapper>
@@ -62,7 +64,8 @@ export default function PublisherDetailPage() {
       <Common.PublisherStatsRow>
         <Common.FollowLabel>게시물</Common.FollowLabel>
         <Common.Value>{publisher.posts.toLocaleString()}</Common.Value>
-        <Common.AddIconButton>
+        <Common.AddIconButton onClick={() => router.push('/post/new')}
+          style={{ cursor: 'pointer' }}>
           <AddBtn />
         </Common.AddIconButton>
       </Common.PublisherStatsRow>

@@ -1,38 +1,40 @@
+// src/app/post/[...]/layout.tsx 또는 PostLayout.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import * as Common from '@/styles/Common';
 import { BackArrowBtn, WUploadBtn, LikeBtn, LikedBtn } from '@/src/assets/icons';
 import CopyPathButton from '@/src/components/CopypathButton';
 
-export default function PostLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname() ?? '';
+export default function PostLayout({ children }: { children: ReactNode }) {
+  const pathname = usePathname() || '';
   const router = useRouter();
 
+  // 1) /post/new 경로라면 레이아웃 없이 children만
+  if (pathname === '/post/new') {
+    return <>{children}</>;
+  }
+
+  // 2) 그 외 포스트 상세 페이지에는 기존 레이아웃 적용
   const isLong = pathname.includes('/post/long');
-
   const [isLiked, setIsLiked] = useState(false);
-  const toggleLike = () => setIsLiked((l) => !l);
-
+  const toggleLike = () => setIsLiked(l => !l);
   const togglePath = isLong ? '/post/short' : '/post/long';
   const toggleLabel = isLong ? '짧은글읽기' : '긴글읽기';
-
   const [isBookmarkOpen, setIsBookmarkOpen] = useState(false);
   const [isScrapToastVisible, setIsScrapToastVisible] = useState(false);
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
+  const publisherId = 'mag.daily';
 
   const handleScrap = (folder: string | null) => {
     setSelectedFolder(folder);
     setIsBookmarkOpen(false);
-
     if (folder) {
       setIsScrapToastVisible(true);
       setTimeout(() => setIsScrapToastVisible(false), 3000);
     }
   };
-
-  const publisherId = 'mag.daily';
 
   return (
     <>
@@ -51,27 +53,27 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
       </Common.TagRow>
 
       {/* 본문 */}
-      <div style={{ paddingTop: isLong ? '-10px' : 0 }}>
-        {children}
-      </div>
+      <div style={{ paddingTop: isLong ? '-10px' : 0 }}>{children}</div>
 
       {/* 북마크 선택창 */}
       {isBookmarkOpen && (
         <Common.BookmarkOverlay onClick={() => setIsBookmarkOpen(false)}>
-          <Common.BookmarkSelectBox onClick={(e) => e.stopPropagation()}>
+          <Common.BookmarkSelectBox onClick={e => e.stopPropagation()}>
             <Common.BookmarkItem onClick={() => handleScrap('y2k')}>y2k</Common.BookmarkItem>
-            <Common.BookmarkItem onClick={() => handleScrap('느좋레시피')}>느좋레시피</Common.BookmarkItem>
+            <Common.BookmarkItem onClick={() => handleScrap('느좋레시피')}>
+              느좋레시피
+            </Common.BookmarkItem>
           </Common.BookmarkSelectBox>
         </Common.BookmarkOverlay>
       )}
 
       {/* 스크랩 완료 토스트 */}
-        {isScrapToastVisible && (
-          <Common.ScrapToast>
-            <Common.ScrapImage src="/briefin_logo.png" alt="스크랩 완료" />
-           스크랩 완료!
-         </Common.ScrapToast>
-        )}
+      {isScrapToastVisible && (
+        <Common.ScrapToast>
+          <Common.ScrapImage src="/briefin_logo.png" alt="스크랩 완료" />
+          스크랩 완료!
+        </Common.ScrapToast>
+      )}
 
       {/* 하단 바 */}
       <Common.PostBottomBar variant={isLong ? 'light' : 'dark'}>
@@ -98,7 +100,6 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
           )}
         </Common.ActionIcons>
 
-        {/* ✅ 북마크 아이콘 이미지 조건부 렌더링 */}
         <Common.ActionIcons>
           <img
             src={selectedFolder ? '/bookmark_on.png' : '/bookmark_off.png'}
@@ -106,17 +107,14 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
             width={24}
             height={24}
             style={{ cursor: 'pointer' }}
-            onClick= {() => {
-              if (selectedFolder) {
-                handleScrap(null); // ✅ 이미 북마크 → 해제
-              } else {
-                setIsBookmarkOpen(true); // ✅ 북마크 안됨 → 선택창 열기
-              }
+            onClick={() => {
+              if (selectedFolder) handleScrap(null);
+              else setIsBookmarkOpen(true);
             }}
           />
         </Common.ActionIcons>
 
-        <CopyPathButton/>
+        <CopyPathButton />
       </Common.PostBottomBar>
     </>
   );
