@@ -30,7 +30,7 @@ const mockData_sb = [
     images: ['/girl.png', '/girl1.png', '/girl2.png', '/girl3.png'],
   },
   {
-    title: '느좋레시피',
+    title: 'fashion',
     images: ['/girl1.png', '/girl2.png', '/girl3.png', '/girl.png'],
   },
 ];

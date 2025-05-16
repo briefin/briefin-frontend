@@ -3,74 +3,33 @@
 import React, { useState } from 'react';
 import { FiChevronLeft, FiSettings } from 'react-icons/fi';
 import * as Common from '@/styles/Common';
-import { SettingBtn } from '@/src/assets/icons';
+import { SettingBtn, LikeBtn, LikedBtn } from '@/src/assets/icons';
 
 const mockData = [
-  {
-    img: '/image_1.png',
-    title: '빈티지 단추 모음',
-    author: '@mag.daily',
-  },
-  {
-    img: '/image_2.png',
-    title: '진주 목걸이는 진짜 유명한 꿀템임',
-    author: '@mag.daily',
-  },
-  {
-    img: '/image_3.png',
-    title: '중저가 주얼리 이거 사세요',
-    author: '@mag.daily',
-  },
-  {
-    img: '/image_4.png',
-    title: '요즘 넥타이 누가 안사?',
-    author: '@mag.daily',
-  },
-  {
-    img: '/image_5.png',
-    title: '버버리 정도는 다들 갖고 있잖아',
-    author: '@mag.daily',
-  },
-  {
-    img: '/image_6.png',
-    title: "What's In My Bag",
-    author: '@mag.daily',
-  },
+  { img: '/image_1.png', title: '빈티지 단추 모음',            author: '@mag.daily' },
+  { img: '/image_2.png', title: '진주 목걸이는 진짜 유명한 꿀템임', author: '@mag.daily' },
+  { img: '/image_3.png', title: '중저가 주얼리 이거 사세요',     author: '@mag.daily' },
+  { img: '/image_4.png', title: '요즘 넥타이 누가 안사?',       author: '@mag.daily' },
+  { img: '/image_5.png', title: '버버리 정도는 다들 갖고 있잖아', author: '@mag.daily' },
+  { img: '/image_6.png', title: "What's In My Bag",           author: '@mag.daily' },
 ];
 
-// ✅ Suggested for you 데이터 (가로 슬라이드용)
 const suggestedData = [
-  {
-    img: '/image_9.png',
-    title: '지리는여가생활',
-    author: '@yeoga',
-  },
-  {
-    img: '/image_9.png',
-    title: '지리는여가생활',
-    author: '@yeoga',
-  },
-  {
-    img: '/image_9.png',
-    title: '지리는여가생활',
-    author: '@yeoga',
-  },
-  // 필요 시 더 추가 가능
+  { img: '/image_9.png', title: '지리는여가생활', author: '@yeoga' },
+  { img: '/image_9.png', title: '지리는여가생활', author: '@yeoga' },
+  { img: '/image_9.png', title: '지리는여가생활', author: '@yeoga' },
 ];
 
 export default function UserProfilePage() {
-
-  const [mockBookmarks, setMockBookmarks] = useState<boolean[]>(new Array(mockData.length).fill(false));
-
-  const toggleMockBookmarks = (index: number) => {
-    setMockBookmarks(prev =>
-      prev.map((b, i) => (i === index ? !b : b))
-    );
+  // 하트 토글 상태
+  const [liked, setLiked] = useState<boolean[]>(new Array(mockData.length).fill(false));
+  const toggleLike = (index: number) => {
+    setLiked(prev => prev.map((v, i) => (i === index ? !v : v)));
   };
 
   return (
-    <Common.ProfilePageWrapper style={{marginLeft : '-5px',}}>
-      {/* ✅ 프로필 정보 */}
+    <Common.ProfilePageWrapper style={{ marginLeft: '-5px' }}>
+      {/* 프로필 정보 */}
       <Common.ProfileInfoWrapper>
         <Common.ProfileDetails>
           <Common.UserInfoText>
@@ -80,18 +39,18 @@ export default function UserProfilePage() {
               <Common.Value>12</Common.Value>
               <Common.FollowLabel>하트수</Common.FollowLabel>
               <Common.Value>6</Common.Value>
-             </Common.PublisherStatsRow>
+            </Common.PublisherStatsRow>
           </Common.UserInfoText>
         </Common.ProfileDetails>
-
         <Common.SettingIconButton>
           <SettingBtn />
         </Common.SettingIconButton>
       </Common.ProfileInfoWrapper>
 
+      {/* 유저 키워드 */}
       <Common.CategoryTitle>유저 키워드</Common.CategoryTitle>
 
-      {/* ✅ 선호 카테고리리 섹션 */} 
+      {/* 선호 카테고리 */}
       <Common.CategorySection>
         <Common.CategoryTitle>선호 카테고리</Common.CategoryTitle>
         <Common.WordCloud>
@@ -103,8 +62,7 @@ export default function UserProfilePage() {
         </Common.WordCloud>
       </Common.CategorySection>
 
-
-      {/* ✅ 선호 퍼블리셔 섹션 */}
+      {/* 선호 퍼블리셔 */}
       <Common.Centered>
         <Common.SuggestedPublisherWrapper>
           <Common.CategoryTitle>선호 퍼블리셔</Common.CategoryTitle>
@@ -122,25 +80,35 @@ export default function UserProfilePage() {
         </Common.SuggestedPublisherWrapper>
       </Common.Centered>
 
-      {/* ✅ 하트한 게시물 섹션 */}
+      {/* 하트한 게시물 */}
       <Common.CategoryTitle>하트한 게시물</Common.CategoryTitle>
       <Common.Grid3>
         {mockData.map((item, idx) => (
-          <Common.LikeCard key={idx}>
+          <Common.LikeCard 
+            key={idx} 
+            style={{ position: 'relative' }}   // 카드에 relative 지정
+          >
+            {/* 사진 */}
             <Common.Image src={item.img} alt={item.title} />
-            <Common.BookmarkWrapper>
-              {mockBookmarks[idx] && (
-                <Common.BookmarkLabel>y2k</Common.BookmarkLabel>
+
+            {/* 하트 아이콘: 우측 상단 */}
+            <Common.ActionIcons
+              onClick={() => toggleLike(idx)}
+              style={{
+                position: 'absolute',
+                top: 8,
+                right: 8,
+                zIndex: 2,
+              }}
+            >
+              {liked[idx] ? (
+                <LikedBtn width={24} height={24} />
+              ) : (
+                <LikeBtn width={24} height={24} />
               )}
-              <Common.BookmarkButton onClick={() => toggleMockBookmarks(idx)}>
-                <img
-                  src={mockBookmarks[idx] ? '/bookmark_on.png' : '/bookmark_off.png'}
-                  alt="bookmark"
-                  width={20}
-                  height={20}
-                />
-              </Common.BookmarkButton>
-            </Common.BookmarkWrapper>
+            </Common.ActionIcons>
+
+            {/* 오버레이 텍스트 */}
             <Common.Overlay>
               <Common.Title>{item.title}</Common.Title>
               <Common.Author>{item.author}</Common.Author>
@@ -148,7 +116,6 @@ export default function UserProfilePage() {
           </Common.LikeCard>
         ))}
       </Common.Grid3>
-
     </Common.ProfilePageWrapper>
   );
 }
