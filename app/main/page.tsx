@@ -1,14 +1,12 @@
 'use client';
 
-import * as Common from '@/styles/Common';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft, FiBookmark   } from 'react-icons/fi';
-import Image from 'next/image'; 
-import { BackArrowBtn, } from '@/src/assets/icons';
+import * as Common from '@/styles/Common';
+import { FiSliders, FiMenu, FiHome, FiSearch, FiBookOpen, FiUser, FiChevronLeft, FiBookmark } from 'react-icons/fi';
+import { BackArrowBtn } from '@/src/assets/icons';
 import CategoryBar from '@/src/components/CategoryBar';
 import BookmarkMenu from '@/src/components/BookmarkMenu';
-
 
 const mockData = [
   {
@@ -43,7 +41,6 @@ const mockData = [
   },
 ];
 
-// ✅ Suggested for you 데이터 (가로 슬라이드용)
 const suggestedData = [
   {
     img: '/image_7.png',
@@ -75,16 +72,17 @@ const suggestedData = [
     title: '빨간맛',
     author: '@mag.daily',
   },
-  // 필요 시 더 추가 가능
 ];
 
-
 export default function Page() {
+  const router = useRouter();
 
-  const router = useRouter(); // ✅ 라우터 훅 사용
-
-  const [mockBookmarks, setMockBookmarks] = useState<boolean[]>(new Array(mockData.length).fill(false));
-  const [suggestedDataBookmarks, setSuggestedDataBookmarks] = useState<boolean[]>(new Array(suggestedData.length).fill(false));
+  const [mockBookmarks, setMockBookmarks] = useState<boolean[]>(
+    new Array(mockData.length).fill(false)
+  );
+  const [suggestedDataBookmarks, setSuggestedDataBookmarks] = useState<boolean[]>(
+    new Array(suggestedData.length).fill(false)
+  );
 
   const toggleMockBookmarks = (index: number) => {
     setMockBookmarks(prev =>
@@ -100,26 +98,46 @@ export default function Page() {
 
   return (
     <>
+      {/* 헤더 */}
       <Common.Centered>
         <Common.Header>
-          <Common.IconButton style={{marginTop : '10px', marginBottom : '10px'}}><BackArrowBtn /></Common.IconButton>  
-        </Common.Header>      
+          <Common.IconButton style={{ marginTop: '10px', marginBottom: '10px' }}>
+            <BackArrowBtn />
+          </Common.IconButton>
+        </Common.Header>
       </Common.Centered>
 
+      {/* 카테고리 바 */}
       <Common.Centered>
         <Common.ButtonRow>
-          <CategoryBar style={{ marginLeft: '20px' }}/>
+          <CategoryBar style={{ marginLeft: '20px' }} />
         </Common.ButtonRow>
       </Common.Centered>
 
-      <Common.Wrapper style={{marginTop:'10px'}}>
+      {/* 메인 컨텐츠 */}
+      <Common.Wrapper style={{ marginTop: '10px' }}>
+        {/* 카드 그리드 */}
         <Common.Grid>
           {mockData.map((item, idx) => (
-            <Common.Card key={idx}>
-              <Common.Image src={item.img} alt={item.title} />
-              <BookmarkMenu
-                 folders={['y2k', '느좋레시피', '취향저격']}
+            <Common.Card key={idx} style={{ position: 'relative' }}>
+              {/* 이미지 클릭 시 /post/short로 이동 */}
+              <Common.Image
+                src={item.img}
+                alt={item.title}
+                onClick={() => router.push('/post/short')}
+                style={{ cursor: 'pointer' }}
+              />
+
+              {/* 북마크 메뉴 */}
+              <div style={{ position: 'absolute', top: 8, right: 8, zIndex: 2 }}>
+                <BookmarkMenu
+                  folders={['y2k', '느좋레시피', '취향저격']}
+                  initialFolder={null}
+                  onChange={() => {}}
                 />
+              </div>
+
+              {/* 오버레이 텍스트 */}
               <Common.Overlay>
                 <Common.Title>{item.title}</Common.Title>
                 <Common.Author>{item.author}</Common.Author>
@@ -128,30 +146,41 @@ export default function Page() {
           ))}
         </Common.Grid>
 
-{/* ✅ Suggested for you 섹션 */}
+        {/* Suggested for you 섹션 */}
         <Common.Centered>
-          <Common.SuggestedWrapper style={{marginTop :'-5px'}}>
+          <Common.SuggestedWrapper style={{ marginTop: '-5px' }}>
             <Common.SectionTitle>Suggested for you</Common.SectionTitle>
             <Common.HorizontalScroll>
               {suggestedData.map((item, idx) => (
-                <Common.SuggestedCard key={idx}>
-                  <Common.SuggestedImage src={item.img} alt={item.title} />
-          {/* 오버레이 텍스트 */}
+                <Common.SuggestedCard key={idx} style={{ position: 'relative' }}>
+                  {/* 클릭 시 /post/short 이동 */}
+                  <Common.SuggestedImage
+                    src={item.img}
+                    alt={item.title}
+                    onClick={() => router.push('/post/short')}
+                    style={{ cursor: 'pointer' }}
+                  />
+
+                  {/* 오버레이 텍스트 */}
                   <Common.SuggestedOverlay>
                     <Common.Title>{item.title}</Common.Title>
                     <Common.Author>{item.author}</Common.Author>
                   </Common.SuggestedOverlay>
-          {/* 북마크 */}
-                  <BookmarkMenu
-                      folders={['y2k', '느좋레시피', '취향저격']}   
-                  />
+
+                  {/* 북마크 메뉴 */}
+                  <div style={{ position: 'absolute', top: 8, right: 8, zIndex: 2 }}>
+                    <BookmarkMenu
+                      folders={['y2k', '느좋레시피', '취향저격']}
+                      initialFolder={null}
+                      onChange={() => {}}
+                    />
+                  </div>
                 </Common.SuggestedCard>
               ))}
             </Common.HorizontalScroll>
           </Common.SuggestedWrapper>
         </Common.Centered>
       </Common.Wrapper>
-
     </>
   );
 }

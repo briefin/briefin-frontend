@@ -24,11 +24,7 @@ export default function ProfileLayout({ children }: { children: React.ReactNode 
 
   // 뒤로가기 버튼 동작
   const handleBack = () => {
-    if (isOtherPubDet) {
-      router.push('/post/short');
-    } else {
       router.back();
-    }
   };
 
   // User 탭 라벨 & 클릭 경로
