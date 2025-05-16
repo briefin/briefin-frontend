@@ -102,9 +102,9 @@ export default function UserProfilePage() {
               }}
             >
               {liked[idx] ? (
-                <LikedBtn width={24} height={24} />
-              ) : (
                 <LikeBtn width={24} height={24} />
+              ) : (
+                <LikedBtn width={24} height={24} />
               )}
             </Common.ActionIcons>
 

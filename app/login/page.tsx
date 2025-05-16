@@ -1,6 +1,7 @@
+// src/components/LoginPage.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import * as Common from '@/styles/Common';
 import { FiMessageSquare } from 'react-icons/fi';
@@ -11,6 +12,15 @@ export default function LoginPage() {
   const [userId, setUserId] = useState('');
   const [userPw, setUserPw] = useState('');
   const [loginFailed, setLoginFailed] = useState(false);
+
+  // 페이지 진입 시 body 스크롤 잠금, 언마운트 시 복원
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
 
   const handleLogin = async () => {
     try {
@@ -28,7 +38,7 @@ export default function LoginPage() {
         const data = await res.json();
         console.log('로그인 성공:', data);
         setLoginFailed(false);
-        router.push('/main'); // 원하는 페이지로 이동
+        router.push('/main');
       } else {
         setLoginFailed(true);
       }
@@ -39,7 +49,7 @@ export default function LoginPage() {
   };
 
   return (
-    <Common.LoginWrapper>
+    <Common.LoginWrapper >
       <Common.LoginTop>
         <Common.Logo src="/briefin_logo.png" alt="logo" />
       </Common.LoginTop>
@@ -65,12 +75,12 @@ export default function LoginPage() {
         />
 
         {loginFailed && (
-          <Common.WarningText> 다시 입력해주세요.</Common.WarningText>
+          <Common.WarningText>다시 입력해주세요.</Common.WarningText>
         )}
 
         <Common.LoginButton onClick={handleLogin}>로그인</Common.LoginButton>
 
-        <Common.LoginBottomText>
+        <Common.LoginBottomText style={{marginBottom : '15px'}}>
           계정이 없으신가요? <a href="/signin">회원가입</a>
         </Common.LoginBottomText>
       </Common.LoginBottom>

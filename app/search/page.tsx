@@ -11,15 +11,7 @@ import {
   SearchFollowBtn, 
   FollowedIcon 
 } from '@/src/assets/icons';
-import {
-  FiSliders,
-  FiMenu,
-  FiHome,
-  FiSearch,
-  FiBookOpen,
-  FiUser,
-  FiChevronLeft
-} from 'react-icons/fi';
+
 
 const mockData = [
   { img: '/image_1.png', title: '빈티지 단추 모음', author: '@mag.daily' },
@@ -110,6 +102,7 @@ export default function SearchPage() {
                         style={{
                           marginTop: 8,
                           padding: 4,
+                          marginBottom: '-20px',
                           
                         }}
                       >

@@ -1,13 +1,9 @@
-// src/components/SearchBar.tsx
 'use client';
 
-import React, { useState, FormEvent, FocusEvent} from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, FormEvent, useRef } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import styled from 'styled-components';
 
-// ────────────────────────────────────────────────────────────
-// 1️⃣ SearchWrapper: SVG 제거, 직사각형 박스 스타일로 변경
-// ────────────────────────────────────────────────────────────
 const SearchWrapper = styled.form`
   display: flex;
   align-items: center;
@@ -16,7 +12,7 @@ const SearchWrapper = styled.form`
   max-width: 390px;
   height: 40px;
   padding: 0 10px;
-  background-color: #232323;       /* 짙은 회색 배경 */
+  background-color: #232323;
   box-sizing: border-box;
 `;
 
@@ -44,27 +40,52 @@ const SearchInput = styled.input`
   padding-bottom: 4px;
 
   &::placeholder {
-    color: #3B3B3B;               /* placeholder 색 */
-    font-size: 16px;           /* placeholder 크기 */
+    color: #3B3B3B;
+    font-size: 16px;
     font-weight: 400;
   }
 `;
 
 export default function SearchBar() {
   const router = useRouter();
-  const [query, setQuery] = useState('');
+  const pathname = usePathname();
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (query.trim()) {
-      router.push(`/search?query=${encodeURIComponent(query)}`);
+  const [query, setQuery] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // 포커스 시 항상 whilesearching 페이지로
+  const handleFocus = () => {
+    if (!pathname?.includes('/search/whilesearching')) {
+      router.push('/search/whilesearching');
     }
   };
 
-  const handleFocus = () => {    // 실제 URL 경로로 푸시!
-     router.push('/search/whilesearching');
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const term = query.trim();
+    if (!term) return;
+
+    // 1) localStorage에 기록 (최대 10개, 중복 제거)
+    try {
+      const prev = JSON.parse(localStorage.getItem('searchHistory') || '[]') as string[];
+      const next = [term, ...prev.filter(x => x !== term)].slice(0, 10);
+      localStorage.setItem('searchHistory', JSON.stringify(next));
+
+      // 2) recents 갱신 알림 이벤트 발송
+      window.dispatchEvent(new Event('recentChanged'));
+    } catch {
+      /* ignore */
+    }
+
+    // 3) 입력 초기화 + blur
+    setQuery('');
+    inputRef.current?.blur();
+
+    // 4) whilesearching 페이지라면 머무르고, 아니면 결과 페이지로 이동
+    if (!pathname?.includes('/search/whilesearching')) {
+      router.push(`/search?query=${encodeURIComponent(term)}`);
+    }
   };
-    
 
   return (
     <SearchWrapper onSubmit={handleSubmit}>
@@ -72,18 +93,13 @@ export default function SearchBar() {
         <img src="/assets/search-icon.svg" alt="검색" width={24} height={24} />
       </SearchButton>
       <SearchInput
-        onFocus={handleFocus}
+        ref={inputRef}
         type="text"
         value={query}
         placeholder="Search contents"
         onChange={e => setQuery(e.target.value)}
+        onFocus={handleFocus}
       />
     </SearchWrapper>
   );
 }
-
-
-
-
-
-

@@ -40,21 +40,21 @@ export const AddIconButton = styled.button`
 `;
 
 export const Wrapper = styled.main`
-  min-height: 100vh;
-  max-width: 100vw;
   background-color: black;
   color: white;
   padding: 0;
+  width: 100%;
   margin-top: 20px;
   width : 100%
   height: 100%
-
+  overflow-x: hidden;
 `;
 
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 10px;
+  margin-left: 30px;
   ${CenteredContainer}
 `;
 
@@ -142,12 +142,12 @@ export const CategoryButton = styled.button<{ active?: boolean }>`
 
 export const ContentWrapper = styled.div`
   width: 100%;
-  margin: 0 auto;         /* 화면 가로 중앙 정렬 */
+  margin: 0;         /* 화면 가로 중앙 정렬 */
       
   box-sizing: border-box; /* 패딩 포함해서 계산 */
   display: flex;
   flex-direction: column;
-  gap: 12px;              /* 자식들 사이 간격 */
+  gap: 4px;              /* 자식들 사이 간격 */
   margin-bottom: -20px;
   
 `;
@@ -661,7 +661,7 @@ export const ImageViewer = styled.div`
   width: 100%;
   max-width: 480px;
   height : 550px;
-  margin: 0 auto;
+  margin: 0 ;
   
 `;
 
@@ -914,7 +914,7 @@ export const PublisherHandle = styled.div`
 export const Grid3 = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);  /* ✅ 3열 */
-  margin: 0 auto;
+  margin: 0 ;
   max-width: 100%;
 `;
 
@@ -1031,6 +1031,7 @@ export const LoginWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  overflow: hidden;
   padding: 48px 24px;
   background-color: black;
   color: white;
