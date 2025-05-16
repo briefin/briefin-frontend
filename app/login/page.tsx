@@ -15,14 +15,18 @@ export default function LoginPage() {
 
   // 페이지 진입 시 body 스크롤 잠금, 언마운트 시 복원
   useEffect(() => {
-    const originalOverflow = document.body.style.overflow;
+    const original = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => {
-      document.body.style.overflow = originalOverflow;
+      document.body.style.overflow = original;
     };
   }, []);
 
   const handleLogin = async () => {
+    // 🚀 임시: 버튼 누르면 무조건 /main 으로 이동
+    router.push('/main');
+    return;
+
     try {
       const res = await fetch('http://localhost:4000/auth/login', {
         method: 'POST',
@@ -35,6 +39,7 @@ export default function LoginPage() {
       });
 
       if (res.ok) {
+        // 실제 로그인 로직 (추후 복원 가능)
         const data = await res.json();
         console.log('로그인 성공:', data);
         setLoginFailed(false);
@@ -49,7 +54,7 @@ export default function LoginPage() {
   };
 
   return (
-    <Common.LoginWrapper >
+    <Common.LoginWrapper>
       <Common.LoginTop>
         <Common.Logo src="/briefin_logo.png" alt="logo" />
       </Common.LoginTop>
@@ -63,14 +68,14 @@ export default function LoginPage() {
           type="text"
           placeholder="이메일"
           value={userId}
-          onChange={(e) => setUserId(e.target.value)}
+          onChange={e => setUserId(e.target.value)}
         />
 
         <Common.LoginInput
           type="password"
           placeholder="비밀번호"
           value={userPw}
-          onChange={(e) => setUserPw(e.target.value)}
+          onChange={e => setUserPw(e.target.value)}
           isError={loginFailed}
         />
 
@@ -78,9 +83,11 @@ export default function LoginPage() {
           <Common.WarningText>다시 입력해주세요.</Common.WarningText>
         )}
 
-        <Common.LoginButton onClick={handleLogin}>로그인</Common.LoginButton>
+        <Common.LoginButton onClick={handleLogin}>
+          로그인
+        </Common.LoginButton>
 
-        <Common.LoginBottomText style={{marginBottom : '15px'}}>
+        <Common.LoginBottomText style={{ marginBottom: '15px' }}>
           계정이 없으신가요? <a href="/signin">회원가입</a>
         </Common.LoginBottomText>
       </Common.LoginBottom>
