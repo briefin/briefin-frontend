@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { FiChevronLeft, FiEye, FiEyeOff } from 'react-icons/fi';
-import * as Common from '@/styles/Common';
 import { BackArrowBtn } from '@/src/assets/icons';
+import { useRouter } from 'next/navigation'; 
+import * as Common from '@/styles/Common';
+
 
 export default function JoinPage() {
   const [name, setName] = useState('');
@@ -55,12 +57,17 @@ export default function JoinPage() {
 
   // 비밀번호 불일치 플래그
   const isPasswordMismatch = confirm.length > 0 && confirm !== password;
+  const router = useRouter(); 
 
   return (
     <Common.FormWrapper>
       {/* 헤더 */}
       <Common.FormHeader>
-        <BackArrowBtn />
+        <Common.ActionIcons
+            onClick={() => router.back()} >  
+          <BackArrowBtn />
+        </Common.ActionIcons>
+
         회원가입
       </Common.FormHeader>
 
